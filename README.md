@@ -20,5 +20,3 @@ Team    :
 ## Tech Stack
 
 React, Redux, TailwindCSS
-
->>>>>>> ed149bdb6eddfa49049b8a5fd6aeb90b8f9d7fe1
