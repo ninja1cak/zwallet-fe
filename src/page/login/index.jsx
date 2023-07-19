@@ -34,7 +34,7 @@ function Login() {
                         <div className="flex items-center border-b-3 pb-3 mb-2 md:mb-12">
                             <FontAwesomeIcon className="md:h-5 lg:h-6" icon={faLock} color="gray" size="xl" />
                             <div className="flex items-center ">
-                                <input className="text-lg md:placeholder:text-sm lg:placeholder:text-lg bg-inherit ml-8 md:w-4/5 lg:w-full" type="text" placeholder="Enter your password" />
+                                <input className="text-lg md:placeholder:text-sm lg:placeholder:text-lg bg-inherit ml-8 md:w-4/5 lg:w-full" type="password" placeholder="Enter your password" />
                             </div>
                             <FontAwesomeIcon className="pl-16 md:pl-0 lg:pl-52" icon={faEyeSlash} color="gray" size="sm" />
                         </div>
