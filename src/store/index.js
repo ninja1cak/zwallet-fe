@@ -11,7 +11,7 @@ const config = {
     storage
 }
 
-const reducers = combinerReducers({
+const reducers = combineReducers({
     users: userReducer
 })
 

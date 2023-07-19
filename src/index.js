@@ -4,7 +4,7 @@ import './index.css';
 import App from './router';
 
 import Store from './store'
-import { Persistgate } from 'redux-persist/integration/react'
+import { PersistGate } from 'redux-persist/integration/react'
 import { Provider } from 'react-redux'
 import { persistStore } from 'redux-persist'
 import { Container } from './helpers/toast'
@@ -15,10 +15,10 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Provider store={Store}>
-      <Persistgate loading={null} persistore={persist}>
+      <PersistGate loading={null} persistor={persist}>
         <App />
         <Container />
-      </Persistgate>
+      </PersistGate>
     </Provider>
   </React.StrictMode>
 );
