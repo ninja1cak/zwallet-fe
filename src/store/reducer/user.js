@@ -22,10 +22,16 @@ const userSlice = createSlice ({
                 token: '',
                 data: {}
             }
+        },
+        addData(state, actions) {
+            return {
+                ...state,
+                data: actions.payload
+            }
         }
     }
 })
 
-export const { login, logout } = userSlice.actions
+export const { login, logout, addData } = userSlice.actions
 
 export default userSlice.reducer

@@ -1,13 +1,49 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Sidebar from "../../component/sidebar";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faLock, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
-import { Link } from "react-router-dom";
-
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import useApi from "../../helpers/useApi";
+import { login } from "../../store/reducer/user";
 
 
 function Login() {
+    
+    const [form, setForm] = useState({})
+    const api = useApi()
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+    const inputChange = (e) =>{
+        const data = {...form}
+        data[e.target.name] = e.target.value
+        setForm(data)
+    }
+
+    const goLogin = async () =>{
+        try {
+            console.log(form)
+            const {data} = await api({
+                method: 'POST',
+                data: form,
+                url:'/auth/'
+            })
+
+            if(data.status == 201){
+                const token = data.token
+                dispatch(login(token))
+                navigate('/home')
+
+            }
+            console.log(data)
+        } catch (error) {
+            console.log(error)
+            return error
+        }
+    }
+
+    
     return (
         <>
             <div className="bg-gray-100 block md:grid grid-cols-2">
@@ -29,12 +65,12 @@ function Login() {
                     <div className="md:mt-10 lg:mt-12">
                         <div className="border-b-3 pb-3 mb-12">
                             <FontAwesomeIcon className="md:h-5 lg:h-6" icon={faEnvelope} color="gray" size="xl" />
-                            <input className="text-lg md:placeholder:text-sm lg:placeholder:text-lg bg-inherit ml-8" type="text" placeholder="Enter your e-mail" />
+                            <input className="text-lg md:placeholder:text-sm lg:placeholder:text-lg bg-inherit ml-8" type="text" name='email' onChange={inputChange} placeholder="Enter your e-mail" />
                         </div>
                         <div className="flex items-center border-b-3 pb-3 mb-2 md:mb-12">
                             <FontAwesomeIcon className="md:h-5 lg:h-6" icon={faLock} color="gray" size="xl" />
                             <div className="flex items-center ">
-                                <input className="text-lg md:placeholder:text-sm lg:placeholder:text-lg bg-inherit ml-8 md:w-4/5 lg:w-full" type="password" placeholder="Enter your password" />
+                                <input className="text-lg md:placeholder:text-sm lg:placeholder:text-lg bg-inherit ml-8 md:w-4/5 lg:w-full" type="password" name='password' onChange={inputChange} placeholder="Enter your password" />
                             </div>
                             <FontAwesomeIcon className="pl-16 md:pl-0 lg:pl-52" icon={faEyeSlash} color="gray" size="sm" />
                         </div>
@@ -43,7 +79,7 @@ function Login() {
                         <Link to="/#" className="text-lg">Forgot password?</Link>
                     </div>
                     <div className="mb-12">
-                        <button className="btn btn-primary w-full h-16 rounded-2xl text-lg capitalize">Login</button>
+                        <button className="btn btn-primary w-full h-16 rounded-2xl text-lg capitalize" onClick={goLogin}>Login</button>
                     </div>
                     <div className="text-center">
                         <span>Don't have an account?</span>
