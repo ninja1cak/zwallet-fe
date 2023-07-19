@@ -4,6 +4,7 @@ import Home from './page/home'
 import Login from './page/login'
 import Reset from './page/reset'
 import Forgot from './page/forgot'
+import Blank from './page/blank'
 
 
 function Router() {
@@ -14,6 +15,7 @@ function Router() {
             <Route path="/login" element={<Login />} />
             <Route path="/reset" element={<Reset />} />
             <Route path="/forgot" element={<Forgot />} />
+            <Route path="/blank" element={<Blank />} />
         </Routes>
         </BrowserRouter>
     ) 
