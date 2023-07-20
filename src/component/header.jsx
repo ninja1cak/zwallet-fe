@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 function Header({name, phone_number}) {
     return(
         <>
-            <div className="shadow-lg rounded-b-3xl ">
+            <div className="shadow-lg rounded-b-3xl bg-white">
                 <div className="flex justify-between px-4 py-16 w-[100%] max-w-7xl mx-auto">
                     <h1 className="text-4xl font-medium text-primary">Zwallet</h1>
                     <div className="dropdown dropdown-hover">
