@@ -13,6 +13,8 @@ import Transfer from './page/transfer'
 import CreatePin from "./page/create_pin";
 import NavbarSide from "./component/navbarside";
 import TransferD from './page/transfer_detail'
+import ChangePin from "./page/change_pin_phone/changepin";
+import ChangeNumber from "./page/change_pin_phone/changenumber";
 
 
 function Router() {
@@ -29,6 +31,8 @@ function Router() {
             <Route path="/blank" element={<Blank />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/personal_info" element={<PersonalInfo />} />
+            <Route path="/change-pin" element={<ChangePin/>} />
+            <Route path="/change-number" element={<ChangeNumber/>} />
             <Route path="/transfer" element={<Transfer />} />
             <Route path="/navbar-side" element={<NavbarSide/>}/>
             <Route path="/transfer/:id" element={<TransferD />} />
