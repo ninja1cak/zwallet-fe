@@ -5,11 +5,11 @@ import profile from '../assets/profile.png'
 import { Link } from "react-router-dom";
 
 
-function Header() {
+function Header({name, phone_number}) {
     return(
         <>
-            <div className="shadow-lg rounded-b-3xl">
-                <div className="flex justify-between px-40 py-16">
+            <div className="shadow-lg rounded-b-3xl ">
+                <div className="flex justify-between px-4 py-16 w-[100%] max-w-7xl mx-auto">
                     <h1 className="text-4xl font-medium text-primary">Zwallet</h1>
                     <div className="dropdown dropdown-hover">
                         <div className="flex items-center gap-4">
@@ -17,8 +17,8 @@ function Header() {
                                 <img src={profile} alt="profile_picture" />
                             </div>
                             <div>
-                                <h2 className="text-lg font-medium">Robert Chandler</h2>
-                                <span className="text-gray-500">+62 5637 8882 9901</span>
+                                <h2 className="text-lg font-medium">{name}</h2>
+                                <span className="text-gray-500">{phone_number ? phone_number : 'set phone number'}</span>
                             </div>
                             <div className="pl-3">
                                 <FontAwesomeIcon icon={faBell} color="gray" size="xl" />
