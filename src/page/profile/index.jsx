@@ -4,6 +4,7 @@ import Footer from "../../component/footer";
 import profile from "../../assets/profile.png"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare, faArrowRight, faArrowLeft } from '@fortawesome/free-solid-svg-icons'
+import NavbarSide from "../../component/navbarside";
 
 
 function Profile() {
@@ -12,7 +13,7 @@ function Profile() {
             <div className="bg-gray-100">
                 <div className="hidden md:block"><Header /></div>
                 <div className="flex gap-8 w-[100%] mx-auto max-w-7xl my-14">
-                    <div className="hidden md:block w-1/4">1</div>
+                    <div className="hidden md:block w-1/4"><NavbarSide /></div>
                     <div className="w-full md:w-3/4 bg-white md:rounded-3xl shadow-lg">
                         <div className="block md:hidden pl-16 "><FontAwesomeIcon icon={faArrowLeft} className="text-gray-500" size="xl" /></div>
                         <div className="flex flex-col justify-center items-center py-12 md:py-24">
