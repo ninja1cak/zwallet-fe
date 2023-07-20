@@ -8,6 +8,7 @@ import Reset from './page/reset'
 import Forgot from './page/forgot'
 import Blank from './page/blank'
 import Profile from './page/profile'
+import PersonalInfo from './page/personal_info'
 import Transfer from './page/transfer'
 import CreatePin from "./page/create_pin";
 import NavbarSide from "./component/navbarside";
@@ -26,6 +27,7 @@ function Router() {
             <Route path="/forgot" element={<Forgot />} />
             <Route path="/blank" element={<Blank />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/personal_info" element={<PersonalInfo />} />
             <Route path="/transfer" element={<Transfer />} />
             <Route path="/navbar-side" element={<NavbarSide/>}/>
         </Routes>
