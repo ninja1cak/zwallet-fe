@@ -7,7 +7,7 @@ import { addData } from "../../store/reducer/user";
 import convertRupiah from 'rupiah-format'
 import Header from'../../component/header'
 import Footer from'../../component/footer'
-
+import NavbarSide from "../../component/navbarside";
 
 function Home() {
 
@@ -59,12 +59,8 @@ function Home() {
         <Header phone_number={user.phone_number} name={user.first_name + ' ' + user.last_name}/>
         <main className=" bg-gray-400 ">
             <div className="flex w-[100%] mx-auto max-w-7xl gap-x-4 border border-primary">
-                <section id = 'navbar side' className=" max-w-xl w-[25%] bg-white my-5 rounded-lg">
-                    <p>Dashboard</p>
-                    <p>Transfer</p>
-                    <p>Top Up</p>
-                    <p>Profile</p>
-                </section>
+            
+                <NavbarSide/>
                 <div className=" block w-[100%]  my-5 border border-primary">
                     <section id='balance' className=" bg-primary w-[100%] rounded-xl p-4 flex justify-between">
                         <div>
