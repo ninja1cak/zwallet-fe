@@ -10,6 +10,7 @@ import Blank from './page/blank'
 import Transfer from './page/transfer'
 import CreatePin from "./page/create_pin";
 import NavbarSide from "./component/navbarside";
+import TransferD from './page/transfer_detail'
 
 
 function Router() {
@@ -26,6 +27,7 @@ function Router() {
             <Route path="/blank" element={<Blank />} />
             <Route path="/transfer" element={<Transfer />} />
             <Route path="/navbar-side" element={<NavbarSide/>}/>
+            <Route path="/transfer/:id" element={<TransferD />} />
         </Routes>
         </BrowserRouter>
     ) 
