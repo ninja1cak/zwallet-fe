@@ -18,17 +18,20 @@ function TransferDetail (id) {
     const dispatch = useDispatch()
     const [user, setUser] = useState ([])
     const { data } = useSelector ((s) => s.users)
+    const [storeData, setStoreData] = useState({})
 
     const inputChange = (e) => {
-        const { name, value } = e.target;
-     dispatch(confirmation(name, value));
+        const data = {...storeData}
+        data[e.target.name] = e.target.value
+        setStoreData(data)        
+        dispatch(confirmation(storeData));
       }
 
     const getUserTransfer = async () => {
         try {
             const {data} = await api.get('/user/all?id=' +params.id)
             setUser(data.data)
-            console.log(user)
+            console.log(data)
         } catch (error) {
             
         }
