@@ -3,9 +3,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBell } from '@fortawesome/free-solid-svg-icons'
 import profile from '../assets/profile.png'
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 
-function Header({name, phone_number}) {
+function Header() {
+    const {data} = useSelector((s) => s.users)
+
     return(
         <>
             <div className="shadow-lg rounded-b-3xl bg-white">
@@ -17,8 +20,8 @@ function Header({name, phone_number}) {
                                 <img src={profile} alt="profile_picture" />
                             </div>
                             <div>
-                                <h2 className="text-lg font-medium">{name}</h2>
-                                <span className="text-gray-500">{phone_number ? phone_number : 'set phone number'}</span>
+                                <h2 className="text-lg font-medium">{data.first_name + ' ' + data.last_name}</h2>
+                                <span className="text-gray-500">{data.phone_number ? data.phone_number : 'set phone number'}</span>
                             </div>
                             <div className="pl-3">
                                 <FontAwesomeIcon icon={faBell} color="gray" size="xl" />

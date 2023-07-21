@@ -129,8 +129,10 @@ const Signup = () => {
 
 
 
-        <div className='bg-gray-300 text-center p-2 rounded-md mb-2 sm:w-full sm:mx-5 md:mx-0' onClick={Register}>
-            Sign Up
+        <div className='bg-gray-300 text-center rounded-md mb-2 sm:w-full sm:mx-5 md:mx-0'>
+            <button className=' btn btn-primary w-full ' onClick={Register}>
+                Sign Up
+            </button>
         </div>
 
         <div className='text-center md:text-xs sm:w-full sm:mx-5 md:mx-0'>

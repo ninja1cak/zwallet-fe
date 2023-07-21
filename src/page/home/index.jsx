@@ -1,16 +1,16 @@
 import React from "react";
 import Card from '../../component/card'
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import useApi from "../../helpers/useApi";
-import { addData } from "../../store/reducer/user";
+import { addData, logout } from "../../store/reducer/user";
 import convertRupiah from 'rupiah-format'
 import Header from'../../component/header'
 import Footer from'../../component/footer'
 import NavbarSide from "../../component/navbarside";
+import { useNavigate } from "react-router-dom";
 
 function Home() {
-
     const [transactionLog, setTransactionLog] = useState([])
     const [user, setUser] = useState([])
     const dispatch = useDispatch()
@@ -56,12 +56,12 @@ function Home() {
 
     return (
         <>
-        <Header phone_number={user.phone_number} name={user.first_name + ' ' + user.last_name}/>
-        <main className=" bg-gray-400 ">
-            <div className="flex w-[100%] mx-auto max-w-7xl gap-x-4 border border-primary">
+        <Header/>
+        <main className=" bg-gray-100">
+            <div className="flex w-[100%] mx-auto max-w-7xl gap-x-4 ">
             
-                <NavbarSide/>
-                <div className=" block w-[100%]  my-5 border border-primary">
+                <NavbarSide />
+                <div className=" block w-[100%]  my-5 ">
                     <section id='balance' className=" bg-primary w-[100%] rounded-xl p-4 flex justify-between">
                         <div>
                             <p className="text-white font-light tracking-wider">Balance</p>
@@ -84,7 +84,7 @@ function Home() {
                                 <div>
                                     <p>&#8593;</p>
                                     <p>Expense</p>
-                                    <p>{convertRupiah.convert(user.balance)}</p>
+                                    <p>{convertRupiah.convert(user.expense)}</p>
                                 </div>
                             </div>
                         </section>
