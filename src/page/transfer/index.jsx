@@ -45,13 +45,13 @@ function Transfer () {
         <div className="flex flex-row w-[100%] max-w-7xl mx-auto bg-gray-100 gap-x-4 ">
 
             <NavbarSide />            
-            <div className="flex flex-col w-full bg-white rounded-lg px-5 py-10 mt-4">
+            <div className="flex flex-col w-full  bg-white rounded-lg px-5 py-10 mt-4">
                 <h1 className="font-bold text-xl mb-5">Search Receiver</h1>
                 <div className="border border-gray-100 flex flex-row rounded-lg bg-gray-100">
                 <img src={Search} alt="" className="object-contain ml-3 " />
                 <input type="text" value={searchQuery} onChange={handleSearchChange} placeholder="Search Receiver Here" className="input border-none w-full bg-gray-100 focus:outline-none" />
                 </div>
-                <div className="flex flex-col gap-y-5 mt-10">
+                <div className="flex flex-col gap-y-5 mt-10 h-[500px]">
                 { user ? ( 
                     user.map((v)=>{
                         return <Contact image={v.photo_profile} first_name={v.first_name} last_name={v.last_name} phone={v.phone_number} id={v.user_id}  />

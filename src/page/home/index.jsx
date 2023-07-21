@@ -20,8 +20,7 @@ function Home() {
             const {data} = await api(`/transaction`)
             let dataTransaction 
             dataTransaction = data.data.map((e) =>{
-                
-                if(e.sender_id == 11){
+                if(e.sender_id == user.user_id){
                     e = {...e,
                         amount: `-${convertRupiah.convert(e.amount)}`
                     }
@@ -33,6 +32,7 @@ function Home() {
 
                 return e
             })
+            console.log(dataTransaction + '')
             setTransactionLog(dataTransaction)
         } catch (error) {
             console.log(error.message)
@@ -45,14 +45,20 @@ function Home() {
             setUser(data.data[0])
             console.log(data.data[0])
             dispatch(addData(data.data[0]))
+            
         } catch (error) {
             
         }
     }
     useEffect(() =>{
         getDataUser()
-        getTransactionLog()
     },[])
+
+    useEffect(() =>{
+        getTransactionLog()
+    },[user])
+
+    
 
     return (
         <>

@@ -10,7 +10,11 @@ function Card({name, amount}) {
                 <p className=' font-medium'>{name}</p>
                 <p className=' font-light'>Transfer</p>
             </div>
-            <p>{amount}</p>
+            {
+              amount.includes('+') ?  <p className=' text-green-500 font font-semibold'>{amount}</p> :   <p className=' text-red-500 font font-semibold'>{amount}</p>
+
+
+            }
         </div>
     </div>
   )
