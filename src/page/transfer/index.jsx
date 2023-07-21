@@ -42,13 +42,10 @@ function Transfer () {
         <>
         <Header />
         <main className="w-full bg-gray-100">
-        <div className="flex flex-row w-4/5 mx-auto bg-gray-100 gap-x-10 pt-10">
-            
-            <div className="w-1/3">
-            <NavbarSide />
-            </div>
-            
-            <div className="flex flex-col w-full bg-white rounded-lg px-5 py-10">
+        <div className="flex flex-row w-[100%] max-w-7xl mx-auto bg-gray-100 gap-x-4 ">
+
+            <NavbarSide />            
+            <div className="flex flex-col w-full bg-white rounded-lg px-5 py-10 mt-4">
                 <h1 className="font-bold text-xl mb-5">Search Receiver</h1>
                 <div className="border border-gray-100 flex flex-row rounded-lg bg-gray-100">
                 <img src={Search} alt="" className="object-contain ml-3 " />
