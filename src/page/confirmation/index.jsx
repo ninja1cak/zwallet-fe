@@ -48,7 +48,7 @@ function Confirmation () {
         getUserTransfer()
         const date = new Date()
         setDateTransfer(date.toLocaleDateString(undefined, options)+' - '+ date.toLocaleTimeString('it-IT'))
-        setDateJSON(date.toJSON())
+        setDateJSON(date.toLocaleDateString(undefined, options) + ' ' + date.toLocaleTimeString('it-IT'))
     },[])
     return (
         <>

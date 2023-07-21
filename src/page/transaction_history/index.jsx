@@ -20,8 +20,8 @@ function TransactionHistory() {
             const {data, meta} = await api(`/transaction?page=${page}`)
  
             let datas = data.data.map((e) =>{
-                const dateTransfer = new Date(data.data[0].transfer_date)
-                
+                const dateTransfer = new Date(e.transfer_date)
+
                 e = {
                     ...e,
                     transfer_date: dateTransfer.toLocaleTimeString('it-IT') +', ' + dateTransfer.toLocaleDateString(undefined, options)
