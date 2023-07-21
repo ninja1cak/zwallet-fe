@@ -7,6 +7,8 @@ import { useState, useEffect } from "react";
 import useApi from "../../helpers/useApi";
 import { useParams } from "react-router-dom";
 import OtpInput from 'react-otp-input';
+import { useSelector } from 'react-redux/es/hooks/useSelector'
+import convertRupiah from 'rupiah-format'
 
 
 function Confirmation () {
@@ -15,7 +17,21 @@ function Confirmation () {
     const api = useApi()
     const [user, setUser] = useState ([])
     const [showModal, setShowModal] = React.useState(false);
-    
+    const { amount, note, data } = useSelector ((s) => s.users)
+
+
+    const transfer = async () => {
+      try {
+        const response = await api.post('transaction?receiver_id=' + params.id, {
+          amount: amount,
+          note: note,
+        });
+        console.log(response)
+      } catch (error) {
+        
+      }
+    }
+
     const getUserTransfer = async () => {
         try {
             const {data} = await api.get('/user/all?id=' +params.id)
@@ -42,11 +58,11 @@ function Confirmation () {
             <h1>Details</h1>
             <div className="w-full px-5 py-5 bg-white drop-shadow-lg rounded-lg">
                 <p>Amount</p>
-                <p>Rp. XXX</p>
+                <p>{convertRupiah.convert(amount)}</p>
             </div>
             <div className="w-full px-5 py-5 bg-white drop-shadow-lg rounded-lg">
                 <p>Balance Left</p>
-                <p>Rp. XXX</p>
+                <p>{convertRupiah.convert(data.balance-amount)}</p>
             </div>
             <div className="w-full px-5 py-5 bg-white drop-shadow-lg rounded-lg">
                 <p>Date & Time</p>
@@ -54,7 +70,7 @@ function Confirmation () {
             </div>
             <div className="w-full px-5 py-5 bg-white drop-shadow-lg rounded-lg">
                 <p>Notes</p>
-                <p>Rp. XXX</p>
+                <p>{note}</p>
             </div>
             <div className="flex flex-row items-end justify-end mr-20 ">
             <button className="bg-primary text-white text-2xl  px-10 py-3 rounded-lg"  onClick={() => setShowModal(true)} >Continue</button>
@@ -100,6 +116,7 @@ function Confirmation () {
                   <button
                     className="bg-primary px-8 py-5 text-white font-bold rounded-lg hover:shadow-lg"
                     type="button"
+                    onClick={transfer}
 
                   >
                     Continue
