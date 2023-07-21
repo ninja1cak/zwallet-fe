@@ -15,9 +15,12 @@ function Confirmation () {
     const [otp, setOtp] = useState('');
     const params = useParams()
     const api = useApi()
+    const [dateTransfer, setDateTransfer] = useState('')
+    const [dateJSON, setDateJSON] = useState('')
     const [user, setUser] = useState ([])
     const [showModal, setShowModal] = React.useState(false);
     const { amount, note, data } = useSelector ((s) => s.users)
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
 
 
     const transfer = async () => {
@@ -25,6 +28,7 @@ function Confirmation () {
         const response = await api.post('transaction?receiver_id=' + params.id, {
           amount: amount,
           note: note,
+          transfer_date: dateJSON
         });
         console.log(response)
       } catch (error) {
@@ -42,6 +46,9 @@ function Confirmation () {
     }
     useEffect(()=> {
         getUserTransfer()
+        const date = new Date()
+        setDateTransfer(date.toLocaleDateString(undefined, options)+' - '+ date.toLocaleTimeString('it-IT'))
+        setDateJSON(date.toJSON())
     },[])
     return (
         <>
@@ -66,7 +73,7 @@ function Confirmation () {
             </div>
             <div className="w-full px-5 py-5 bg-white drop-shadow-lg rounded-lg">
                 <p>Date & Time</p>
-                <p>Rp. XXX</p>
+                <p>{dateTransfer}</p>
             </div>
             <div className="w-full px-5 py-5 bg-white drop-shadow-lg rounded-lg">
                 <p>Notes</p>

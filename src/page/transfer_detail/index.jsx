@@ -24,7 +24,7 @@ function TransferDetail (id) {
         const data = {...storeData}
         data[e.target.name] = e.target.value
         setStoreData(data)        
-        dispatch(confirmation(storeData));
+        dispatch(confirmation(storeData))
       }
 
     const getUserTransfer = async () => {

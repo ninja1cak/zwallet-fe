@@ -8,7 +8,7 @@ import convertRupiah from 'rupiah-format'
 import Header from'../../component/header'
 import Footer from'../../component/footer'
 import NavbarSide from "../../component/navbarside";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Home() {
     const [transactionLog, setTransactionLog] = useState([])
@@ -32,7 +32,7 @@ function Home() {
 
                 return e
             })
-            console.log(dataTransaction + '')
+            console.log(dataTransaction)
             setTransactionLog(dataTransaction)
         } catch (error) {
             console.log(error.message)
@@ -64,11 +64,11 @@ function Home() {
         <>
         <Header/>
         <main className=" bg-gray-100">
-            <div className="flex w-[100%] mx-auto max-w-7xl gap-x-4 ">
+            <div className="flex w-[100%] mx-auto max-w-7xl gap-x-4 h-[700px] ">
             
                 <NavbarSide />
-                <div className=" block w-[100%]  my-5 ">
-                    <section id='balance' className=" bg-primary w-[100%] rounded-xl p-4 flex justify-between">
+                <div className=" block w-[100%] my-5 ">
+                    <section id='balance' className=" bg-primary w-[100%] rounded-xl p-4 flex justify-between ">
                         <div>
                             <p className="text-white font-light tracking-wider">Balance</p>
                             <p className="text-white text-4xl my-4">{convertRupiah.convert(user.balance)}</p>
@@ -97,7 +97,7 @@ function Home() {
                         <section className="bg-white w-[45%] p-6 mt-4 rounded-lg">
                             <div className=" flex justify-between mb-8">
                                 <p className=" font-medium">Transaction History</p>
-                                <p className=" text-primary">See all</p>
+                                <Link to='/history' className=" text-primary">See all</Link>
                             </div>
                             {
                                 transactionLog ? transactionLog.map((e) => {
