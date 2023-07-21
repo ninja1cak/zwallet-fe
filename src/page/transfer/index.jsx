@@ -57,7 +57,7 @@ function Transfer () {
                 <div className="flex flex-col gap-y-5 mt-10">
                 { user ? ( 
                     user.map((v)=>{
-                        return <Contact image={v.photo_profile} first_name={v.first_name} last_name={v.last_name} phone={v.phone_number} username={v.username}  />
+                        return <Contact image={v.photo_profile} first_name={v.first_name} last_name={v.last_name} phone={v.phone_number} id={v.user_id}  />
                     })):(<h1>data not found</h1>)
                 }
                 </div>
