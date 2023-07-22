@@ -31,17 +31,33 @@ function Header() {
                             <p className=" text-gray-500 mb-2">This Week</p>
                             {
                                 transactionLog ? transactionLog.map((e) =>{
-                                    return (
-                                        <>
-                                            <div className=" flex items-start gap-x-2 bg-white shadow-md mb-4 p-4">
-                                                <FontAwesomeIcon icon={faArrowUp} style={{color:'red'}} className="h-4 mt-1" />
-                                                <div>
-                                                    <p className=" text-gray-500  text-xs">Tranferred to {e.first_name + ' ' + e.last_name}</p>
-                                                    <p className=" font-semibold">{convert.convert(e.amount)}</p>
+                                    if(e.sender_id == data.user_id){
+                                        return (
+                                            <>                                        
+                                                <div className=" flex items-start gap-x-2 bg-white shadow-md mb-4 p-4">
+                                                    <FontAwesomeIcon icon={faArrowUp} style={{color:'red'}} className="h-4 mt-1" />
+                                                    <div>
+                                                        <p className=" text-gray-500  text-xs">Tranferred to {e.first_name + ' ' + e.last_name}</p>
+                                                        <p className=" font-semibold">{convert.convert(e.amount)}</p>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </>
-                                    )
+                                            </>
+                                        )
+                                    }else{
+                                        return (
+                                            <>                                        
+                                                <div className=" flex items-start gap-x-2 bg-white shadow-md mb-4 p-4">
+                                                    <FontAwesomeIcon icon={faArrowDown} style={{color:'green'}} className="h-4 mt-1" />
+                                                    <div>
+                                                        <p className=" text-gray-500  text-xs">Tranferred to {e.first_name + ' ' + e.last_name}</p>
+                                                        <p className=" font-semibold">{convert.convert(e.amount)}</p>
+                                                    </div>
+                                                </div>
+                                            </>
+                                        )
+                                    }
+
+
                                 }) : ''
                             }
                         </ul>
