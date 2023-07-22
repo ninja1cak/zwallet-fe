@@ -9,8 +9,12 @@ import Header from'../../component/header'
 import Footer from'../../component/footer'
 import NavbarSide from "../../component/navbarside";
 import { Link, useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBell } from '@fortawesome/free-solid-svg-icons'
 
 function Home() {
+    const {data} = useSelector((s) => s.users)
+
     const [transactionLog, setTransactionLog] = useState([])
     const [user, setUser] = useState([])
     const dispatch = useDispatch()
@@ -63,9 +67,34 @@ function Home() {
     return (
         <>
         <Header/>
+
+        <div className="shadow-lg lg:hidden rounded-b-3xl bg-white">
+            <div className="flex justify-between px-4 pt-16 pb-10 w-[100%] max-w-7xl mx-auto ">
+                <div className="dropdown dropdown-hover w-full ">
+                    <div className="flex items-center justify-between  w-[100%]  gap-4">
+                        <div className=" flex">
+                            <img className=" w-12 h-12 " src={user.photo_profile} alt="profile_picture" />
+                            <div>
+                            <p>Hello,</p>
+                            <h2 className="text-lg font-medium">{data.first_name + ' ' + data.last_name}</h2>
+                            </div>
+                        </div>
+
+                        <div className="pl-3">
+                            <FontAwesomeIcon icon={faBell} color="gray" size="xl" />
+                        </div>
+                    </div>
+                    <ul className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
+                        <li><Link to="/#">adasdasdsa</Link></li>
+                        <li><Link to="/#">ohkfhkfkkm</Link></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
         <main className=" bg-gray-100">
             <div className="flex w-[100%] mx-auto max-w-7xl gap-x-4 h-[700px] ">
-            
+                
                 <NavbarSide />
                 <div className=" block w-[100%] my-5 ">
                     <section id='balance' className=" bg-primary w-[100%] rounded-xl p-4 flex justify-between ">
@@ -80,7 +109,7 @@ function Home() {
                         </div>
                     </section>
                     <div className="w-[100%] flex justify-between gap-x-4">
-                        <section className=" bg-white w-[55%] p-4 mt-4 rounded-lg">
+                        <section className=" hidden md:block bg-white w-[55%] p-4 mt-4 rounded-lg">
                             <div className="flex justify-between">
                                 <div>
                                     <p>&#8595;</p>
@@ -94,7 +123,7 @@ function Home() {
                                 </div>
                             </div>
                         </section>
-                        <section className="bg-white w-[45%] p-6 mt-4 rounded-lg">
+                        <section className="bg-white w-[100%] md:w-[50%]  p-6 mt-4 rounded-lg">
                             <div className=" flex justify-between mb-8">
                                 <p className=" font-medium">Transaction History</p>
                                 <Link to='/history' className=" text-primary">See all</Link>

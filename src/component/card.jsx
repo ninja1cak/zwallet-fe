@@ -11,11 +11,11 @@ function Card({name, amount, date}) {
         <img src={Default_photo} alt="" className=' object-contain w-16' />
         <div className=' flex justify-between items-center w-full'>
             <div>
-                <p className=' font-medium'>{name}</p>
-                <p className=' font-light'>Transfer</p>
+                <p className=' font-medium text-base '>{name}</p>
+                <p className=' font-light text-base '>Transfer</p>
             </div>
             {
-              amount.includes('+') ?  <p className=' text-green-500 font font-semibold'>{amount}</p> :   <p className=' text-red-500 font font-semibold'>{amount}</p>
+              amount.includes('+') ?  <p className=' text-green-500  font-semibold text-base'>{amount}</p> :   <p className=' text-red-500 font font-semibold text-base'>{amount}</p>
             }
         </div>
     </div>
