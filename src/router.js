@@ -26,6 +26,7 @@ function Router() {
             <Route path="/home" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/create-pin" element={<CreatePin/>}/>
+            <Route path="/create-pin/:code" element={<CreatePin/>} />
             <Route path="/register" element={<Register/>}/>
             <Route path="/reset/:code" element={<Reset />} />
             <Route path="/forgot" element={<Forgot />} />

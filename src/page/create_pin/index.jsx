@@ -1,12 +1,13 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import Sidebar from '../../component/sidebar'
 import axios from 'axios'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 const CreatePin = () => {
     const [form, setForm] = useState([])
     const navigate = useNavigate()
-    
+    const {code} = useParams()
+    const [email, setEmail] = useState('')
 
     const inputChange = (e) =>{
 
@@ -55,7 +56,7 @@ const CreatePin = () => {
 
         await axios({
             method: "PUT",
-            url: "http://localhost:8888/user",
+            url: `http://localhost:8888/user?email=${email}`,
             data: form
         })
         .then(({data}) => {
@@ -70,6 +71,28 @@ const CreatePin = () => {
         })
 
     } 
+    
+    const updateStatus = async() =>{
+        try {
+            const {data} = await axios(`http://localhost:8888/auth/${code}`)
+            if(data.status != 200){
+                navigate('/')
+            }
+
+            if(data.status == 200){
+                setEmail(data.email)
+            }
+
+
+        } catch (error) {
+            console.log(error)
+        }
+
+    }
+
+    useEffect(() =>{
+        updateStatus()
+    },[])
     return (
         <div>
           

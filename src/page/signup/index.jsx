@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import Sidebar from '../../component/sidebar'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
@@ -6,6 +6,7 @@ import axios from 'axios'
 const Signup = () => {
 
     const [form, setForm] = useState({})
+    const [status, setStatus] = useState(0)
     const navigate = useNavigate()
 
 
@@ -25,15 +26,16 @@ const Signup = () => {
         })
         .then(({data}) => {
             console.log('Registrasi Berhasil', data)
-
-            setTimeout(()=>{
-                navigate('/create-pin')
-            }, 3000)
+            setStatus(data.status)
         })
         .catch((er)=>{
             console.error(er.message)
         })
     }
+
+    useEffect(() =>{
+
+    },[status])
 
     return (
     <div>
@@ -138,6 +140,9 @@ const Signup = () => {
         <div className='text-center md:text-xs sm:w-full sm:mx-5 md:mx-0'>
             <p>Already Have an account? Let's <Link to='#' className='text-blue-500'>Login</Link></p>
         </div>
+        {
+            status == 201 ? <p className=' font-semibold text-center mt-4'>Check your email for activation account</p> : status == 400 ?  <p className=' font-semibold text-center mt-4'>Email has been registered</p> : ''
+        }
 
       </div>
     </div>
