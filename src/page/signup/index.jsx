@@ -27,7 +27,7 @@ const Signup = () => {
             console.log('Registrasi Berhasil', data)
 
             setTimeout(()=>{
-                navigate('/login')
+                navigate('/create-pin')
             }, 3000)
         })
         .catch((er)=>{
