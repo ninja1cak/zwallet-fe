@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 
 const CreatePin = () => {
     const [form, setForm] = useState([])
-    const navigate = useNavigate
+    const navigate = useNavigate()
     
 
     const inputChange = (e) =>{
