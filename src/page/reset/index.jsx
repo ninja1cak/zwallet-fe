@@ -79,7 +79,7 @@ function Reset() {
                     <h1 className="text-3xl font-medium text-primary">Zwallet</h1>
                 </div>
                 <div className="bg-white rounded-t-3xl md:rounded-none px-8 md:px-0 md:pl-12 lg:pl-16 md:pr-20 lg:pr-36 md:py-16 lg:py-20">
-                    <span className="hidden md:block md:text-lg lg:text-3xl font-medium lg:leading-relaxed block mb-12">Did You Forgot Your Password? Don’t Worry, You Can Reset Your Password In a Minutes.</span>
+                    <span className="hidden md:block md:text-lg lg:text-3xl font-medium lg:leading-relaxed  mb-12">Did You Forgot Your Password? Don’t Worry, You Can Reset Your Password In a Minutes.</span>
                     <span className="hidden md:block md:text-sm lg:text-lg text-gray-400 md:leading-relaxed lg:leading-loose">Now you can create a new password for your Zwallet account. Type your password twice so we can confirm your new passsword.</span>
                     <div className="block md:hidden text-center py-10 px-4">
                         <h1 className="text-3xl font-bold mb-6">Reset Password</h1>

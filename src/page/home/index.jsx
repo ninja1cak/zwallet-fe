@@ -3,18 +3,19 @@ import Card from '../../component/card'
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import useApi from "../../helpers/useApi";
-import { addData, logout } from "../../store/reducer/user";
+import { addData, addTransactionLog } from "../../store/reducer/user";
 import convertRupiah from 'rupiah-format'
 import Header from'../../component/header'
 import Footer from'../../component/footer'
 import NavbarSide from "../../component/navbarside";
 import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBell } from '@fortawesome/free-solid-svg-icons'
+import { faBell, faArrowDown, faArrowUp } from '@fortawesome/free-solid-svg-icons'
+import Default_photo from '../../assets/default_photo.png'
 
 function Home() {
     const {data} = useSelector((s) => s.users)
-
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
     const [transactionLog, setTransactionLog] = useState([])
     const [user, setUser] = useState([])
     const dispatch = useDispatch()
@@ -36,7 +37,18 @@ function Home() {
 
                 return e
             })
+
+            const date = new Date()
+
+            date.setDate(date.getDate()-7)
+            
+            const filter = data.data.filter((e) =>{
+                let transactionDate = new Date (e.transfer_date)
+                return (transactionDate >= date)
+            })
+
             console.log(dataTransaction)
+            dispatch(addTransactionLog(filter))
             setTransactionLog(dataTransaction)
         } catch (error) {
             console.log(error.message)
@@ -68,12 +80,12 @@ function Home() {
         <>
         <Header/>
 
-        <div className="shadow-lg lg:hidden rounded-b-3xl bg-white">
+        <div className="shadow-lg md:hidden rounded-b-3xl bg-white">
             <div className="flex justify-between px-4 pt-16 pb-10 w-[100%] max-w-7xl mx-auto ">
                 <div className="dropdown dropdown-hover w-full ">
                     <div className="flex items-center justify-between  w-[100%]  gap-4">
                         <div className=" flex">
-                            <img className=" w-12 h-12 " src={user.photo_profile} alt="profile_picture" />
+                            <img className=" w-12 h-12 " src={user.photo_profile ? user.photo_profile : Default_photo} alt="profile_picture" />
                             <div>
                             <p>Hello,</p>
                             <h2 className="text-lg font-medium">{data.first_name + ' ' + data.last_name}</h2>
@@ -112,14 +124,14 @@ function Home() {
                         <section className=" hidden md:block bg-white w-[55%] p-4 mt-4 rounded-lg">
                             <div className="flex justify-between">
                                 <div>
-                                    <p>&#8595;</p>
-                                    <p>Income</p>
-                                    <p>{convertRupiah.convert(user.income)}</p>
+                                    <FontAwesomeIcon icon={faArrowDown} style={{color: 'green'}} className="w-6 h-6"  />
+                                    <p className=" font-medium text-gray-500">Income</p>
+                                    <p className=" font-bold text-lg">{convertRupiah.convert(user.income)}</p>
                                 </div>
                                 <div>
-                                    <p>&#8593;</p>
-                                    <p>Expense</p>
-                                    <p>{convertRupiah.convert(user.expense)}</p>
+                                    <FontAwesomeIcon icon={faArrowUp} style={{color: 'red'}} className="w-6 h-6" />
+                                    <p className=" font-medium text-gray-500">Expense</p>
+                                    <p className=" font-bold text-lg">{convertRupiah.convert(user.expense)}</p>
                                 </div>
                             </div>
                         </section>
@@ -130,7 +142,7 @@ function Home() {
                             </div>
                             {
                                 transactionLog ? transactionLog.map((e) => {
-                                    return <Card name={e.first_name + ' ' + e.last_name} amount={e.amount} />
+                                    return <Card name={e.first_name + ' ' + e.last_name} amount={e.amount} mb={'0.5rem'} />
                                 }) : ''
                             }
                         </section>
