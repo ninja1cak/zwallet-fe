@@ -27,8 +27,8 @@ function Home() {
             <div className="dropdown dropdown-bottom  lg:hidden">
             <label tabindex="0" className="btn m-1 bg-primary text-white">Menu</label>
             <ul tabindex="0" className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
-                <li><a>Login</a></li>
-                <li><a>Sign Up</a></li>
+                <li><Link to="/login">Login</Link></li>
+                <li><Link to="/register">Sign Up</Link></li>
             </ul>
             </div>
             <div className=" flex-row gap-x-7 items-center hidden lg:flex">
@@ -55,7 +55,7 @@ function Home() {
                     oftenly wasting much of your times
                 </p>
                 <div className="w-max mt-10">
-                    <a href="/" className="rounded-lg px-9 py-3 bg-primary text-white ">Try It Free</a>
+                    <Link to="/register" className="rounded-lg px-9 py-3 bg-primary text-white ">Try It Free</Link>
                 </div>
                 <div className="mt-10">                 
                 <img src={store} alt="" />

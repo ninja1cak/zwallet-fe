@@ -46,6 +46,7 @@ function Router() {
             <Route path="/history" element={<TransactionHistory />} />
             <Route path="/success" element={<Success />} />
             <Route path="/failed" element={<Failed />} />
+            <Route path= "/topup" element={<Topup />} />
 
         </Routes>
         </BrowserRouter>

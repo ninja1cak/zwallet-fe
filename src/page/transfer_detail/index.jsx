@@ -63,7 +63,7 @@ function TransferDetail (id) {
         <div className="flex flex-row w-[100%] max-w-7xl mx-auto bg-gray-100 gap-x-4 ">
 
             <NavbarSide />            
-            <div className="flex flex-col w-full lg:w-2/3 pt-5 pr-5 bg-white pl-10 mt-5 rounded-lg pb-10">
+            <div className="flex flex-col w-full px-10 py-10 bg-white mt-4 rounded-lg pb-10">
             <h1 className="text-2xl font-bold mb-5">Transfer Money</h1>
             {user.map((v) => {
                 return <Contact image={v.photo_profile} first_name={v.first_name} last_name={v.last_name} phone={v.phone_number} disabled/>

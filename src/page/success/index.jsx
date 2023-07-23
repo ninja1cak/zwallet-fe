@@ -83,7 +83,7 @@ function Success () {
         <div className="flex flex-row w-[100%] max-w-7xl mx-auto bg-gray-100 gap-x-4 ">
 
             <NavbarSide />            
-            <div className="bg-white rounded-lg px-10 py-10 w-full kgLw-2/3 flex flex-col gap-y-5 mt-5">
+            <div className="bg-white rounded-lg px-10 py-10 w-full flex flex-col gap-y-5 mt-5">
             <img src={successlogo} alt="" className="object-contain max-h-24"/>
             <div className="w-full px-5 py-5 bg-white drop-shadow-lg rounded-lg">
                 <p className="font-bold">Amount</p>
