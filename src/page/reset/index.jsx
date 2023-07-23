@@ -4,11 +4,12 @@ import useApi from "../../helpers/useApi";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faLock, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
 import { Link, useNavigate, useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 
 
 function Reset() {
-
+    const {isAuth} = useSelector((s) => s.users)
     const [password, setPassword] = useState('')
     const [checkPass, setCheckPass] = useState('')
     const [status, setStatus] = useState()
@@ -18,6 +19,7 @@ function Reset() {
 
     const verifyCode = async () =>{
         try {
+            console.log(code)
             const {data} = await api({
                 url: `/auth/reset`,
                 method: 'POST',
@@ -25,7 +27,7 @@ function Reset() {
                     token: code
                 }
             })
-            if(data.status === 400){
+            if(data.status === 400 || data === undefined){
                 console.log(data)
                 navigate('/')
             }else{
@@ -66,7 +68,11 @@ function Reset() {
 
 
     useEffect(() =>{
-        verifyCode()
+        if(isAuth){
+            navigate('/home')
+        }else{
+            verifyCode()
+        }
     }, [])
 
     return (

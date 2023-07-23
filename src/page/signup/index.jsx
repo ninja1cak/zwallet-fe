@@ -2,14 +2,15 @@ import React, {useEffect, useState} from 'react'
 import Sidebar from '../../component/sidebar'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import { useSelector } from 'react-redux'
 
 const Signup = () => {
 
     const [form, setForm] = useState({})
     const [status, setStatus] = useState(0)
     const navigate = useNavigate()
-
-
+    const {isAuth} = useSelector((s) => s.users)
+    const [btnState, setBtnState] = useState(true)
     const inputChange = (e)=>{
         const data = {...form}
         data[e.target.name] = e.target.value
@@ -34,9 +35,19 @@ const Signup = () => {
     }
 
     useEffect(() =>{
+        if(!form.first_name || !form.last_name || !form.password || !form.email ){
+            setBtnState(true)
+        }else{
+            setBtnState(false)
+        }
+    },[status, form])
 
-    },[status])
-
+    useEffect(() =>{
+        if(isAuth){
+            navigate('/home')
+        }
+    },[])
+    
     return (
     <div>
       <Sidebar/>
@@ -132,7 +143,7 @@ const Signup = () => {
 
 
         <div className='bg-gray-300 text-center rounded-md mb-2 sm:w-full sm:mx-5 md:mx-0'>
-            <button className=' btn btn-primary w-full ' onClick={Register}>
+            <button className=' btn btn-primary w-full ' onClick={Register} disabled={btnState}>
                 Sign Up
             </button>
         </div>

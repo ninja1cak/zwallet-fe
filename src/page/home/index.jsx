@@ -14,7 +14,8 @@ import { faBell, faArrowDown, faArrowUp } from '@fortawesome/free-solid-svg-icon
 import Default_photo from '../../assets/default_photo.png'
 
 function Home() {
-    const {data} = useSelector((s) => s.users)
+    const {data, isAuth} = useSelector((s) => s.users)
+    const navigate = useNavigate()
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
     const [transactionLog, setTransactionLog] = useState([])
     const [user, setUser] = useState([])
@@ -68,6 +69,10 @@ function Home() {
     }
     useEffect(() =>{
         getDataUser()
+
+        if(!isAuth){
+            navigate('/')
+        }
     },[])
 
     useEffect(() =>{
@@ -116,7 +121,7 @@ function Home() {
                             <p className="text-white tracking-wider">{user.phone_number ? user.phone_number : "set your phone number"}</p>
                         </div>
                         <div>
-                            <button className=" block btn w-32 mb-4 bg-indigo-400 text-white">Transfer</button>
+                            <button className=" block btn w-32 mb-4 bg-indigo-400 text-white" onClick={() => navigate('/transfer')}>Transfer</button>
                             <button className=" btn w-32 bg-indigo-400 text-white">Top Up</button>
                         </div>
                     </section>

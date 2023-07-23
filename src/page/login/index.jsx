@@ -4,17 +4,20 @@ import Sidebar from "../../component/sidebar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faLock, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import useApi from "../../helpers/useApi";
 import { login } from "../../store/reducer/user";
 
 
 function Login() {
-    
+    const {isAuth} = useSelector((s) => s.users)
     const [form, setForm] = useState({})
     const api = useApi()
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    const [btnState, setBtnState] = useState(true)
+
+
     const inputChange = (e) =>{
         const data = {...form}
         data[e.target.name] = e.target.value
@@ -42,8 +45,19 @@ function Login() {
             return error
         }
     }
+    useEffect(() =>{
+        if(isAuth)(
+            navigate('/home')
+        )
+    },[])
 
-    
+    useEffect(() =>{
+        if(!form.password || !form.email ){
+            setBtnState(true)
+        }else{
+            setBtnState(false)
+        }
+    },[form])
     return (
         <>
             <div className="bg-gray-100 block md:grid grid-cols-2">
@@ -79,7 +93,7 @@ function Login() {
                         <Link to="/#" className="text-lg">Forgot password?</Link>
                     </div>
                     <div className="mb-12">
-                        <button className="btn btn-primary w-full h-16 rounded-2xl text-lg capitalize" onClick={goLogin}>Login</button>
+                        <button className="btn btn-primary w-full h-16 rounded-2xl text-lg capitalize" onClick={goLogin} disabled={btnState}>Login</button>
                     </div>
                     <div className="text-center">
                         <span>Don't have an account?</span>

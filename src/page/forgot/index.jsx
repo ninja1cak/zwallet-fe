@@ -3,13 +3,16 @@ import Sidebar from "../../component/sidebar";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faLock, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 
 
 function Forgot() {
+    const {isAuth} = useSelector((s) => s.users)
     const [email, setEmail] = useState('')
     const [status, setStatus] = useState(0)
+    const navigate = useNavigate()
     const handleClick =  async () =>{
         try {
             const {data} = await axios.get(`http://localhost:8888/auth/forget_password?email=${email}`)
@@ -23,6 +26,12 @@ function Forgot() {
     // useEffect(() =>{
     //     console.log(email)
     // }, [email])
+
+    useEffect(() =>{
+        if(isAuth){
+            navigate('/home')
+        }
+    },[])
 
     return (
         <>
