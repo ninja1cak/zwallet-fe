@@ -16,9 +16,9 @@ import TransferD from './page/transfer_detail'
 import ChangePin from "./page/change_pin_phone/changepin";
 import ChangeNumber from "./page/change_pin_phone/changenumber";
 import Confirmation from "./page/confirmation";
+import TransactionHistory from "./page/transaction_history";
 import Success from "./page/success"
 import Failed from './page/failed'
-
 
 function Router() {
     return (
@@ -28,6 +28,7 @@ function Router() {
             <Route path="/home" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/create-pin" element={<CreatePin/>}/>
+            <Route path="/create-pin/:code" element={<CreatePin/>} />
             <Route path="/register" element={<Register/>}/>
             <Route path="/reset/:code" element={<Reset />} />
             <Route path="/forgot" element={<Forgot />} />
@@ -40,8 +41,10 @@ function Router() {
             <Route path="/navbar-side" element={<NavbarSide/>}/>
             <Route path="/transfer/:id" element={<TransferD />} />
             <Route path="/confirmation/:id" element={<Confirmation />} />
+            <Route path="/history" element={<TransactionHistory />} />
             <Route path="/success" element={<Success />} />
             <Route path="/failed" element={<Failed />} />
+
         </Routes>
         </BrowserRouter>
     ) 

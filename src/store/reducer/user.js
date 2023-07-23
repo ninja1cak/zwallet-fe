@@ -8,6 +8,7 @@ const userSlice = createSlice ({
         data: {},
         amount: '',
         note: '',
+        transactionLog: {}
     },
     reducers: {
         login(state, actions) {
@@ -37,10 +38,16 @@ const userSlice = createSlice ({
                 amount: actions.payload.amount,
                 note: actions.payload.note
             }
+        },
+        addTransactionLog(state, actions){
+            return{
+                ...state,
+                transactionLog: actions.payload
+            }
         }
     }
 })
 
-export const { login, logout, addData, confirmation } = userSlice.actions
+export const { login, logout, addData, confirmation, addTransactionLog } = userSlice.actions
 
 export default userSlice.reducer

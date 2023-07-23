@@ -16,10 +16,13 @@ function Confirmation () {
     const params = useParams()
     const api = useApi()
     const navigate = useNavigate()
+    const [dateTransfer, setDateTransfer] = useState('')
+    const [dateJSON, setDateJSON] = useState('')
     const [user, setUser] = useState ([])
     const [transaction, setTransaction] = useState ([])
     const [showModal, setShowModal] = React.useState(false);
     const { amount, note, data } = useSelector ((s) => s.users)
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
 
     const validatePin = () => {
       return data.pin === otp
@@ -30,6 +33,7 @@ function Confirmation () {
         const response = await api.post('transaction?receiver_id=' + params.id, {
           amount: amount,
           note: note,
+          transfer_date: dateJSON
         });
         navigate('/success')
       } catch (error) {
@@ -69,6 +73,9 @@ function Confirmation () {
         getUserTransfer()
         getTransaction()
         getCurrentDateTime()
+        const date = new Date()
+        setDateTransfer(date.toLocaleDateString(undefined, options)+' - '+ date.toLocaleTimeString('it-IT'))
+        setDateJSON(date.toLocaleDateString(undefined, options) + ' ' + date.toLocaleTimeString('it-IT'))
     },[])
     return (
         <>
@@ -93,7 +100,7 @@ function Confirmation () {
             </div>
             <div className="w-full px-5 py-5 bg-white drop-shadow-lg rounded-lg">
                 <p>Date & Time</p>
-                <p>{getCurrentDateTime}</p>
+                <p>{dateTransfer}</p>
             </div>
             <div className="w-full px-5 py-5 bg-white drop-shadow-lg rounded-lg">
                 <p>Notes</p>

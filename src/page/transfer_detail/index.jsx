@@ -24,7 +24,7 @@ function TransferDetail (id) {
         const data = {...storeData}
         data[e.target.name] = e.target.value
         setStoreData(data)        
-        dispatch(confirmation(storeData));
+        dispatch(confirmation(storeData))
       }
 
     const getUserTransfer = async () => {
@@ -53,7 +53,7 @@ function TransferDetail (id) {
             })}
             <p className="mt-10">Type the amount you want to transfer and then</p>
             <p>press Continue to the next steps.</p>
-            <input  type="text" name="amount" onChange={inputChange} className="border-none w-full py-10 text-6xl text-center border-none focus:outline-0 text-gray-400 mt-10" placeholder="0.00" />
+            <input type="text" name="amount" onChange={inputChange} className="border-none w-full py-10 text-6xl text-center  focus:outline-0 text-gray-400 mt-10" placeholder="0.00" />
             <p className="text-center font-bold text-xl">{convertRupiah.convert(data.balance)} Available</p>
             <div className=" border-b border-gray-400 flex flex-row py-5 mt-10 w-1/2 mx-auto focus:outline-0 gap-x-5">
                 <img src={search} alt="" className="ml-5"/>
