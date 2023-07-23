@@ -149,7 +149,7 @@ const Signup = () => {
         </div>
 
         <div className='text-center md:text-xs sm:w-full sm:mx-5 md:mx-0'>
-            <p>Already Have an account? Let's <Link to='#' className='text-blue-500'>Login</Link></p>
+            <p>Already Have an account? Let's <Link to='/login' className='text-blue-500'>Login</Link></p>
         </div>
         {
             status == 201 ? <p className=' font-semibold text-center mt-4'>Check your email for activation account</p> : status == 400 ?  <p className=' font-semibold text-center mt-4'>Email has been registered</p> : ''
