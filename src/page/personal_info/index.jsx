@@ -12,7 +12,7 @@ import { useSelector } from "react-redux";
 
 function PersonalInfo() {
     const { data } = useSelector((s)=>s.users)
-
+    console.log(data)
     useEffect(() => {
         
     },[])
@@ -50,7 +50,7 @@ function PersonalInfo() {
                                     <span className="md:text-lg text-gray-500 mb-3">Phone Number</span>
                                     <div className="flex justify-between">
                                         <h1 className="text-xl md:text-2xl font-medium mt-2">{ data.phone_number == null ? 'Phone number not set' : data.phone_number }</h1>
-                                        <Link to="/#" className="pr-2 md:pr-5 text-sm md:text-lg text-primary font-medium">Manage</Link>
+                                        <Link to="/change-number" className="pr-2 md:pr-5 text-sm md:text-lg text-primary font-medium">Manage</Link>
                                     </div>
                                 </div>
                             </div>

@@ -34,7 +34,7 @@ function ChangeNumber() {
             console.log('Nomor handphone berhasil di update', data)
 
             setTimeout(()=>{
-                navigate('/personal_info')
+                navigate('/home')
             })
         },3000)
         .catch((er)=>{

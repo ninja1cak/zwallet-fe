@@ -1,9 +1,91 @@
-import React from 'react'
+import React, {useState}from 'react'
 import NavbarSide from '../../component/navbarside'
 import Header from '../../component/header'
 import Footer from '../../component/footer'
+import useApi from '../../helpers/useApi'
+import { useNavigate } from 'react-router-dom'
 
 function ChangePin ()  {
+
+    const [form, setForm] = useState([])
+
+
+    const api = useApi()
+    const navigate = useNavigate()
+
+    const inputChange = (e) =>{
+        const pin1 = document.getElementById('pin1').value
+        const pin2 = document.getElementById('pin2').value
+        const pin3 = document.getElementById('pin3').value
+        const pin4 = document.getElementById('pin4').value
+        const pin5 = document.getElementById('pin5').value
+        const pin6 = document.getElementById('pin6').value
+
+        let mergePin = ''
+
+        if(isNaN(pin1)){
+            return alert('kolom 1 bukan angka')
+        }
+        else if(pin1==''){
+            alert('mohon masukkan angka di kolom 1')
+        }
+
+        if(isNaN(pin2)){
+            return alert('kolom 2 bukan angka')
+        }
+        else if(pin2==''){
+            alert('mohon masukkan angka di kolom 2')
+        }
+
+        if(isNaN(pin3)){
+            return alert('kolom 3 bukan angka')
+        }
+        else if(pin3==''){
+            alert('mohon masukkan angka di kolom 3')
+        }
+
+        if(isNaN(pin4)){
+            return alert('kolom 4 bukan angka')
+        }
+        else if(pin4==''){
+            alert('mohon masukkan angka di kolom 4')
+        }
+
+        if(isNaN(pin5)){
+            return alert('kolom 5 bukan angka')
+        }
+        else if(pin5==''){
+            alert('mohon masukkan angka di kolom 5')
+        }
+
+        if(isNaN(pin6)){
+            return alert('kolom 6 bukan angka')
+        }
+        else if(pin6==''){
+            alert('mohon masukkan angka di kolom 6')
+        }
+
+        mergePin = pin1.concat(pin2, pin3,pin4, pin5, pin6)
+
+        setForm({pin: mergePin})
+    }
+    const updatePin = async () =>{
+        await api({
+            method: 'PATCH',
+            url: '/user/update',
+            data: form
+        })
+        .then(({data}) => {
+            //console.log('Nomor handphone berhasil di update', data)
+            alert('PIN berhasil di update!')
+            setTimeout(()=>{
+                navigate('/personal_info')
+            })
+        },3000)
+        .catch((er)=>{
+            console.log(er)
+        })
+    }
   return (
     <div>
         <div className="bg-gray-100">
@@ -29,45 +111,76 @@ function ChangePin ()  {
 
 
                         <div className="flex flex-row w-full justify-center xs:mx-2  md:mx-5 mx-auto px-0 md:px-0 mt-10">
-                            <div className='w-full'>
-                                <input 
-                                type='number'
-                                className='xs:w-9 sm:w-10 border border-gray-400 rounded-md p-2 text-center'/>
-                            </div>
-
-                            <div className='w-full'>
-                                <input 
-                                type='number'
-                                className='xs:w-9 sm:w-10 border border-gray-400 rounded-md p-2 text-center'/>
-                            </div>
-
-                            <div className='w-full'>
-                                <input 
-                                type='number'
-                                className='xs:w-9 sm:w-10 border border-gray-400 rounded-md p-2 text-center'/>
-                            </div>
-
-                            <div className='w-full'>
-                                <input 
-                                type='number'
-                                className='xs:w-9 sm:w-10 border border-gray-400 rounded-md p-2 text-center'/>
-                            </div>
-
-                            <div className='w-full'>
-                                <input 
-                                type='number'
-                                className='xs:w-9 sm:w-10 border border-gray-400 rounded-md p-2 text-center'/>
-                            </div>
-
-                            <div className='w-full'>
-                                <input 
-                                type='number'
-                                className='xs:w-9 sm:w-10 border border-gray-400 rounded-md p-2 text-center'/>
-                            </div>
-                        </div>
-
+                        <div className='w-full'>
+                        <input 
+                        type='text'
+                        id='pin1'
+                        className='pin w-10 border rounded-md p-2 text-center'
+                        name='pin'
+                        onChange={inputChange}
+                        required
+                        maxLength={1}/>
+                    </div>
+    
+                    <div className='w-full'>
+                        <input 
+                        type='text'
+                        id='pin2'
+                        className='pin w-10 border rounded-md p-2 text-center'
+                        name='pin'
+                        onChange={inputChange}
+                        required
+                        maxLength={1}/>
+                    </div>
+    
+                    <div className='w-full'>
+                        <input 
+                        type='text'
+                        id='pin3'
+                        className='pin w-10 border rounded-md p-2 text-center'
+                        name='pin'
+                        onChange={inputChange}
+                        required
+                        maxLength={1}/>
+                    </div>
+    
+                    <div className='w-full'>
+                        <input 
+                        type='text'
+                        id='pin4'
+                        className='pin w-10 border rounded-md p-2 text-center'
+                        name='pin'
+                        onChange={inputChange}
+                        required
+                        maxLength={1}/>
+                    </div>
+    
+                    <div className='w-full'>
+                        <input 
+                        type='text'
+                        id='pin5'
+                        className='pin w-10 border rounded-md p-2 text-center'
+                        name='pin'
+                        onChange={inputChange}
+                        required
+                        maxLength={1}/>
+                    </div>
+    
+                    <div className='w-full'>
+                        <input 
+                        type='text'
+                        id='pin6'
+                        className='pin w-10 border rounded-md p-2 text-center'
+                        name='pin'
+                        onChange={inputChange}
+                        required
+                        maxLength={1}/>
+                    </div>
+                </div>
                         <div className='w-full mt-36 bg-gray-300 rounded-md text-center p-2'>
-                            Confirm
+                            <button className="btn btn-ghost" onClick={updatePin}>    
+                                Confirm
+                            </button>
                         </div>
                     </div>
                 </div>
