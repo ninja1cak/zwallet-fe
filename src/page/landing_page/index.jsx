@@ -25,7 +25,7 @@ function Home() {
             </div>
             <div className=" flex-row gap-x-7 items-center hidden lg:flex">
                 <Link to="/login" className="block px-9 py-3 bg-white border border-primary text-primary font-bold rounded-lg hover:bg-primary hover:text-white" >Login</Link>
-                <Link to="" className="block px-9 py-3 bg-primary border border-primary text-white font-bold rounded-lg hover:bg-white hover:text-primary" >Sign Up</Link>
+                <Link to="/register" className="block px-9 py-3 bg-primary border border-primary text-white font-bold rounded-lg hover:bg-white hover:text-primary" >Sign Up</Link>
             </div>
         </navbar>
 

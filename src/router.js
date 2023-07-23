@@ -16,6 +16,8 @@ import TransferD from './page/transfer_detail'
 import ChangePin from "./page/change_pin_phone/changepin";
 import ChangeNumber from "./page/change_pin_phone/changenumber";
 import Confirmation from "./page/confirmation";
+import Success from "./page/success"
+import Failed from './page/failed'
 
 
 function Router() {
@@ -38,6 +40,8 @@ function Router() {
             <Route path="/navbar-side" element={<NavbarSide/>}/>
             <Route path="/transfer/:id" element={<TransferD />} />
             <Route path="/confirmation/:id" element={<Confirmation />} />
+            <Route path="/success" element={<Success />} />
+            <Route path="/failed" element={<Failed />} />
         </Routes>
         </BrowserRouter>
     ) 
