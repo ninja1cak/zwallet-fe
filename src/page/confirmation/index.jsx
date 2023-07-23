@@ -84,7 +84,7 @@ function Confirmation () {
       <div className="flex flex-row w-full max-w-7xl mx-auto bg-gray-100 gap-x-4 ">
 
           <NavbarSide />            
-          <div className="bg-white rounded-lg px-10 py-10 w-full lg:w-2/3 flex flex-col gap-y-5 mt-5">
+          <div className="bg-white rounded-lg px-10 py-10 w-full flex flex-col gap-y-5 mt-4">
             <h1>Transfer To</h1>
             {user.map((v) => {
                 return <Contact image={v.photo_profile} first_name={v.first_name} last_name={v.last_name} phone={v.phone_number} disabled/>

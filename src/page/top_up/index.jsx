@@ -5,13 +5,13 @@ import NavbarSide from "../../component/navbarside";
 
 function Topup() {
     return (
-        <div className="flex flex-col min-h-screen">
-        <div className="hidden lg:block"><Header/></div>
-        <div className="flex-grow bg-gray-200 flex flex-row justify-normal pt-5 w-full  gap-x-10">
-            <div className="hidden lg:block ml-10">
-            <NavbarSide/>
-            </div>
-            <div className="w-2/3 bg-white rounded-lg px-5 py-5 flex flex-col gap-y-5">
+        <>
+        <div className="hidden lg:block"><Header /></div>
+        <main className="w-full bg-gray-100">
+        <div className="flex flex-row w-[100%] max-w-7xl mx-auto bg-gray-100 gap-x-4 ">
+
+            <NavbarSide />            
+            <div className="w-full  bg-white rounded-lg px-10 py-10 flex flex-col gap-y-5 mt-4">
                 <h1 className="font-bold ">
                     How To Top Up
                 </h1>
@@ -49,11 +49,11 @@ function Topup() {
                 </div>
 
             </div>
+
         </div>
-        <div className="hidden lg:block lg:bottom">
-            <Footer/>
-        </div>
-        </div>
+        </main>
+        <div className="hidden lg:block"><Footer /></div>
+        </>
     )
 }
 
