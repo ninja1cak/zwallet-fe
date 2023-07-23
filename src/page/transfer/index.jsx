@@ -5,13 +5,16 @@ import Search from '../../assets/search.png'
 import Contact from '../../component/Contact'
 import useApi from "../../helpers/useApi";
 import NavbarSide from "../../component/navbarside";
-
+import { useSelector} from 'react-redux'
+import { useNavigate } from "react-router-dom";
 function Transfer () {
     const api = useApi()
     const [user,setUser] = useState([])
     const [currentPage, setCurrentPage] = useState(1)
     const [totalPages, setTotalPages] = useState(0)
     const [searchQuery, setSearchQuery] = useState([])
+    const navigate = useNavigate()
+    const {isAuth} = useSelector ((s) => s.users)
 
     const handleSearchChange = (event) => {
         setSearchQuery(event.target.value);
@@ -36,8 +39,11 @@ function Transfer () {
       }
 
     useEffect(()=> {
+        if (!isAuth) {
+            navigate ('/')
+          }
         getUser()
-    },[currentPage,searchQuery])
+    },[currentPage,searchQuery,isAuth])
     return(
         <>
         <div className="hidden lg:block"><Header /></div>
