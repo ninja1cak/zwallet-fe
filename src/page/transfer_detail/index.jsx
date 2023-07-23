@@ -10,6 +10,7 @@ import { useSelector } from 'react-redux/es/hooks/useSelector'
 import convertRupiah from 'rupiah-format'
 import { useDispatch } from "react-redux";
 import { confirmation } from "../../store/reducer/user";
+import { Show } from "../../helpers/toast";
 
 function TransferDetail (id) {
     const params = useParams()
@@ -30,13 +31,13 @@ function TransferDetail (id) {
     
     const handleContinue = () => {
         if (!storeData.amount) {
-            alert("Please enter Transfer Amount");
+            Show("Please enter Transfer Amount","warning");
             return;
           }
         const amountValue = parseFloat(storeData.amount);
         const balanceValue = parseFloat(data.balance);
         if (amountValue > balanceValue) {
-        alert("Insufficient Balance.");
+        Show("Insufficient Balance.","warning");
         return;}
         dispatch(confirmation(storeData))
         navigate(`/confirmation/${user[0].user_id}`);

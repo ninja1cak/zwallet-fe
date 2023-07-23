@@ -9,6 +9,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import OtpInput from 'react-otp-input';
 import { useSelector } from 'react-redux/es/hooks/useSelector'
 import convertRupiah from 'rupiah-format'
+import { Show } from "../../helpers/toast";
 
 
 function Confirmation () {
@@ -36,12 +37,15 @@ function Confirmation () {
           note: note,
           transfer_date: dateJSON
         });
-        navigate('/success')
+        Show('Transfer Success', 'success')
+        setTimeout(()=> {
+          navigate('/success')
+        },3000)
       } catch (error) {
         
       }
     } else {
-      alert('INVALID PIN please try again')
+      Show('INVALID PIN please try again',"error")
     }
   }
 
@@ -66,7 +70,6 @@ function Confirmation () {
     useEffect(()=> {
         getUserTransfer()
         getTransaction()
-     
         const date = new Date()
         setDateTransfer(date.toLocaleDateString(undefined, options)+' - '+ date.toLocaleTimeString('it-IT'))
         setDateJSON(date.toLocaleDateString(undefined, options) + ' ' + date.toLocaleTimeString('it-IT'))
@@ -85,25 +88,25 @@ function Confirmation () {
 
           <NavbarSide />            
           <div className="bg-white rounded-lg px-10 py-10 w-full flex flex-col gap-y-5 mt-4">
-            <h1>Transfer To</h1>
+            <h1 className="font-bold">Transfer To</h1>
             {user.map((v) => {
                 return <Contact image={v.photo_profile} first_name={v.first_name} last_name={v.last_name} phone={v.phone_number} disabled/>
             })}
-            <h1>Details</h1>
+            <h1 className="font-bold">Details</h1>
             <div className="w-full px-5 py-5 bg-white drop-shadow-lg rounded-lg">
-                <p>Amount</p>
+                <p className="font-bold">Amount</p>
                 <p>{convertRupiah.convert(amount)}</p>
             </div>
             <div className="w-full px-5 py-5 bg-white drop-shadow-lg rounded-lg">
-                <p>Balance Left</p>
+                <p className="font-bold">Balance Left</p>
                 <p>{convertRupiah.convert(data.balance-amount)}</p>
             </div>
             <div className="w-full px-5 py-5 bg-white drop-shadow-lg rounded-lg">
-                <p>Date & Time</p>
+                <p className="font-bold">Date & Time</p>
                 <p>{dateTransfer}</p>
             </div>
             <div className="w-full px-5 py-5 bg-white drop-shadow-lg rounded-lg">
-                <p>Notes</p>
+                <p className="font-bold">Notes</p>
                 <p>{note}</p>
             </div>
             <div className="flex flex-row items-end justify-end mr-20 ">
@@ -133,7 +136,7 @@ function Confirmation () {
                 onChange={setOtp}
                 numInputs={6}
                 renderSeparator={<span>-</span>}
-                inputStyle="border border-gray-300 py-2 rounded-lg" 
+                inputStyle={{width:"35px", height: "40px", border: "solid 2px gray", borderRadius: "10px"}}
                 inputContainerStyle="inline-block mx-1"
                 shouldAutoFocus
                 renderInput={(props) => <input {...props} />}
