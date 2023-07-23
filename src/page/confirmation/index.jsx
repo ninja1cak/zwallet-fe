@@ -58,9 +58,7 @@ function Confirmation () {
     const getTransaction = async () => {
       try {
         const {data} = await api.get ('/transaction')
-        console.log(data)
         setTransaction = (data.data)
-        console.log(setTransaction)
       } catch (error) {
         
       }
@@ -83,10 +81,10 @@ function Confirmation () {
       <>
       <div className="hidden lg:block"><Header /></div>
       <main className="w-full bg-gray-100">
-      <div className="flex flex-row w-[100%] max-w-7xl mx-auto bg-gray-100 gap-x-4 ">
+      <div className="flex flex-row w-full max-w-7xl mx-auto bg-gray-100 gap-x-4 ">
 
           <NavbarSide />            
-          <div className="bg-white rounded-lg px-10 py-10 w-2/3 flex flex-col gap-y-5 mt-5">
+          <div className="bg-white rounded-lg px-10 py-10 w-full lg:w-2/3 flex flex-col gap-y-5 mt-5">
             <h1>Transfer To</h1>
             {user.map((v) => {
                 return <Contact image={v.photo_profile} first_name={v.first_name} last_name={v.last_name} phone={v.phone_number} disabled/>

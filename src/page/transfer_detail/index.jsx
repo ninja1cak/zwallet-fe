@@ -25,7 +25,7 @@ function TransferDetail (id) {
         const data = {...storeData}
         data[e.target.name] = e.target.value
         setStoreData(data)
-        dispatch(confirmation(storeData))
+       
       }
     
     const handleContinue = () => {
@@ -38,25 +38,24 @@ function TransferDetail (id) {
         if (amountValue > balanceValue) {
         alert("Insufficient Balance.");
         return;}
+        dispatch(confirmation(storeData))
         navigate(`/confirmation/${user[0].user_id}`);
     }
     const getUserTransfer = async () => {
         try {
             const {data} = await api.get('/user/all?id=' +params.id)
             setUser(data.data)
-            console.log(data)
         } catch (error) {
         }
     }
     useEffect(()=> {
-        
         getUserTransfer()
     },[])
     useEffect(()=> {
         if (!isAuth) {
             navigate ('/')
           }
-    },[isAuth])
+    },[isAuth,inputChange])
     return (
         <>
         <div className="hidden lg:block"><Header /></div>
@@ -71,14 +70,14 @@ function TransferDetail (id) {
             })}
             <p className="mt-10">Type the amount you want to transfer and then</p>
             <p>press Continue to the next steps.</p>
-            <input type="text" name="amount" onChange={inputChange} className="border-none w-full py-10 text-6xl text-center  focus:outline-0 text-gray-400 mt-10" placeholder="0.00" />
+            <input type="number" name="amount" onChange={inputChange} className="border-none w-full py-10 text-6xl text-center  focus:outline-0 text-gray-400 mt-10" placeholder="0.00" />
             <p className="text-center font-bold text-xl">{convertRupiah.convert(data.balance)} Available</p>
             <div className=" border-b border-gray-400 flex flex-row py-5 mt-10 w-1/2 mx-auto focus:outline-0 gap-x-5">
                 <img src={search} alt="" className="ml-5"/>
-                <input  type="text" name="note" onChange={inputChange} className="border-none w-full focus:outline-0 text-base text-gray-400" placeholder="Add some notes (optional)"/>
+                <input  type="text"  name="note" onChange={inputChange} className="border-none w-full focus:outline-0 text-base text-gray-400" placeholder="Add some notes (optional)"/>
             </div>
             <div className="flex flex-row items-end justify-end mr-20 mt-20">
-            <button className="bg-primary text-white text-2xl  px-10 py-3 rounded-lg"  onClick={(handleContinue)} >Continue</button>
+            <button className="bg-primary text-white text-2xl  px-10 py-3 rounded-lg"  onClick={handleContinue} >Continue</button>
             </div>
         </div>
 

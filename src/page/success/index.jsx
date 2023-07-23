@@ -13,6 +13,7 @@ import { useSelector } from 'react-redux/es/hooks/useSelector'
 import share from '../../assets/share-2.png'
 import download from '../../assets/download.png'
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
 function Success () {
@@ -21,6 +22,8 @@ function Success () {
     const api = useApi()
     const dispatch = useDispatch()
     const [dataTransfer, setDataTransfer] = useState ([])
+    const navigate= useNavigate()
+    const {isAuth} = useSelector ((s) => s.users)
 
       const getUserTransfer = async () => {
         try {
@@ -30,6 +33,18 @@ function Success () {
             console.log(error)
         }
     }
+    const formatDate = (dateString) => {
+        const options = { 
+          year: 'numeric', 
+          month: 'long', 
+          day: 'numeric',
+          hour: 'numeric',
+          minute: 'numeric',
+          second: 'numeric'
+        };
+        const date = new Date(dateString);
+        return date.toLocaleString('en-US', options);
+      };
 
     const { data } = useSelector ((s) => s.users)
     const getDataUser = async () =>{
@@ -50,16 +65,17 @@ function Success () {
         }
       }
     useEffect(()=> {
-        getTransaction()
-        getUserTransfer()
-        
+  
         getDataUser()
     },[])
     useEffect(() => {
+        if (!isAuth) {
+            navigate ('/')
+          }
         getTransaction()
         getUserTransfer()
         
-    },[dataTransfer])
+    },[dataTransfer,userReceiver,isAuth])
     return (
         <>
         <div className="hidden lg:block"><Header /></div>
@@ -67,7 +83,7 @@ function Success () {
         <div className="flex flex-row w-[100%] max-w-7xl mx-auto bg-gray-100 gap-x-4 ">
 
             <NavbarSide />            
-            <div className="bg-white rounded-lg px-10 py-10 w-2/3 flex flex-col gap-y-5 mt-5">
+            <div className="bg-white rounded-lg px-10 py-10 w-full kgLw-2/3 flex flex-col gap-y-5 mt-5">
             <img src={successlogo} alt="" className="object-contain max-h-24"/>
             <div className="w-full px-5 py-5 bg-white drop-shadow-lg rounded-lg">
                 <p className="font-bold">Amount</p>
@@ -79,7 +95,7 @@ function Success () {
             </div>
             <div className="w-full px-5 py-5 bg-white drop-shadow-lg rounded-lg">
                 <p className="font-bold">Date & Time</p>
-                <p>{dataTransfer.transfer_date}</p>
+                <p>{formatDate(dataTransfer.transfer_date)}</p>
             </div>
             <div className="w-full px-5 py-5 bg-white drop-shadow-lg rounded-lg">
                 <p className="font-bold">Notes</p>
@@ -87,11 +103,11 @@ function Success () {
             </div>
             <h1 className="font-bold">Transfer to</h1>
                             {
-                userReceiver && userReceiver.length > 0 ? (
+                userReceiver ? (
                     userReceiver.map((v) => {
                     return (
                         <Contact
-                        key={v.id} // Assuming there is a unique identifier like 'id' for each item
+                        key={v.id} 
                         image={v.photo_profile}
                         first_name={v.first_name}
                         last_name={v.last_name}
