@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import logo from '../../assets/Zwallet.png'
 import hero from '../../assets/Group 49.png'
 import store from '../../assets/Group 50.png'
@@ -10,8 +10,16 @@ import about3 from '../../assets/Group 12.png'
 import profile from '../../assets/1.png'
 import arrowleft from '../../assets/arrowleft.png'
 import arrowright from '../../assets/arrowright.png'
+import { useSelector } from "react-redux";
 
 function Home() {
+    const {isAuth} = useSelector((s) => s.users)
+    const navigate = useNavigate()
+    useEffect(() =>{
+        if(isAuth)(
+            navigate('/home')
+        )
+    },[])
     return (
         <>
         <navbar className="flex flex-row items-center justify-between px-20 pt-16 bg-slate-50">

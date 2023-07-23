@@ -14,6 +14,7 @@ function Header() {
             <div className="shadow-lg hidden md:block rounded-b-3xl bg-white">
                 <div className="flex justify-between px-4 py-16 w-[100%] max-w-7xl mx-auto">
                     <h1 className="text-4xl font-medium text-primary">Zwallet</h1>
+                    <Link to='/profile'>
                     <div className="dropdown dropdown-hover relative">
                         <div className="flex items-center gap-4">
                             <div>
@@ -27,7 +28,7 @@ function Header() {
                                 <FontAwesomeIcon icon={faBell} color="gray" size="xl" />
                             </div>
                         </div>
-                        <ul className=" absolute left-[-100px] dropdown-content z-[1] menu p-6 shadow bg-base-100 rounded-box w-72 ">
+                        <ul className=" absolute right-0 dropdown-content z-[1] menu p-6 shadow bg-base-100 rounded-box w-72 ">
                             <p className=" text-gray-500 mb-2">This Week</p>
                             {
                                 transactionLog ? transactionLog.map((e) =>{
@@ -62,6 +63,8 @@ function Header() {
                             }
                         </ul>
                     </div>
+                    </Link>
+
                 </div>
             </div>
         </>

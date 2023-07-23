@@ -19,6 +19,7 @@ import Confirmation from "./page/confirmation";
 import TransactionHistory from "./page/transaction_history";
 import Success from "./page/success"
 import Failed from './page/failed'
+import ChangePassword from "./page/changePassword";
 
 function Router() {
     return (
@@ -44,7 +45,8 @@ function Router() {
             <Route path="/history" element={<TransactionHistory />} />
             <Route path="/success" element={<Success />} />
             <Route path="/failed" element={<Failed />} />
-
+            <Route path="/change-password" element={<ChangePassword />} />
+            
         </Routes>
         </BrowserRouter>
     ) 
