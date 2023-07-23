@@ -9,41 +9,70 @@ const CreatePin = () => {
     const {code} = useParams()
     const [email, setEmail] = useState('')
 
-    const inputChange = (e) =>{
 
-        //let validationNumber = /^[0-9]+$/
+    const inputChange = (e) =>{
         const pin1 = document.getElementById('pin1').value
         const pin2 = document.getElementById('pin2').value
         const pin3 = document.getElementById('pin3').value
         const pin4 = document.getElementById('pin4').value
         const pin5 = document.getElementById('pin5').value
         const pin6 = document.getElementById('pin6').value
-
-        const mergePin = pin1.concat(pin2, pin3,pin4, pin5, pin6)
-
-        // if(!validationNumber.test(pin1)){
-        //     alert('harap masukkan angka')
-        // }else if(!validationNumber.test(pin2)){
-        //     alert('harap masukkan angka')
-        // }else if(!validationNumber.test(pin3)){
-        //     alert('harap masukkan angka')
-        // }else if(!validationNumber.test(pin4)){
-        //     alert('harap masukkan angka')
-        // }else if(!validationNumber.test(pin5)){
-        //     alert('harap masukkan angka')
-        // }else if(!validationNumber.test(pin6)){
-        //     alert('harap masukkan angka')   
+        // if(isNaN(pin1)|| pin1 == ''){
+        //     console.log('ini adalah huruf dan huruf kosong')
         // }
+        // else if(pin1 == ''){
+        //     console.log('ini adalah kosong')
+        // }
+        // else{
+        //     console.log('ini adalah huruf')
+        // }
+        // console.log(pin2)
+        let mergePin = ''
 
-    //     if (!validationNumber.test(pin1) ||
-    //     !validationNumber.test(pin2) ||
-    //     !validationNumber.test(pin3) ||
-    //     !validationNumber.test(pin4) ||
-    //     !validationNumber.test(pin5) ||
-    //     !validationNumber.test(pin6)) {
-    //   alert('Harap masukkan angka pada setiap digit PIN.');
-    //   return;
-    // }
+        if(isNaN(pin1)){
+            return alert('kolom 1 bukan angka')
+        }
+        else if(pin1==''){
+            alert('mohon masukkan angka di kolom pertama')
+        }
+
+        if(isNaN(pin2)){
+            return alert('kolom 2 bukan angka')
+        }
+        else if(pin2==''){
+            alert('mohon masukkan angka di kolom kedua')
+        }
+
+        if(isNaN(pin3)){
+            return alert('kolom 3 bukan angka')
+        }
+        else if(pin3==''){
+            alert('mohon masukkan angka di kolom 3')
+        }
+
+        if(isNaN(pin4)){
+            return alert('kolom 4 bukan angka')
+        }
+        else if(pin4==''){
+            alert('mohon masukkan angka di kolom 4')
+        }
+
+        if(isNaN(pin5)){
+            return alert('kolom 5 bukan angka')
+        }
+        else if(pin5==''){
+            alert('mohon masukkan angka di kolom 5')
+        }
+
+        if(isNaN(pin6)){
+            return alert('kolom 6 bukan angka')
+        }
+        else if(pin6==''){
+            alert('mohon masukkan angka di kolom 6')
+        }
+
+        mergePin = pin1.concat(pin2, pin3,pin4, pin5, pin6)
+
 
         //console.log(mergePin)
         setForm({pin: mergePin})
@@ -51,24 +80,27 @@ const CreatePin = () => {
 
     }
     console.log(form)
+    // console.error()
+
 
     const inputPin = async () =>{
-
-        await axios({
-            method: "PUT",
-            url: `http://localhost:8888/user?email=${email}`,
-            data: form
-        })
-        .then(({data}) => {
-            console.log('PIN Berhasil ditambahkan!', data)
-
-            setTimeout(()=>{
-                navigate('/login')
-            }, 3000)
-        })
-        .catch((er)=>{
-            console.error(er.message)
-        })
+            await axios({
+                method: "PUT",
+                url: `http://localhost:8888/user?email=${email}`,
+                data: form
+            })
+            .then(({data}) => {
+                console.log('PIN Berhasil ditambahkan!', data)
+                
+                setTimeout(()=>{
+                    navigate('/login')
+                }, 3000)
+            
+            })
+            
+            .catch((er)=>{
+                console.log(er.message)
+            })
 
     } 
     
@@ -119,6 +151,7 @@ const CreatePin = () => {
                         className='pin w-10 border rounded-md p-2 text-center'
                         name='pin'
                         onChange={inputChange}
+                        required
                         maxLength={1}/>
                     </div>
     
@@ -129,6 +162,7 @@ const CreatePin = () => {
                         className='pin w-10 border rounded-md p-2 text-center'
                         name='pin'
                         onChange={inputChange}
+                        required
                         maxLength={1}/>
                     </div>
     
@@ -139,6 +173,7 @@ const CreatePin = () => {
                         className='pin w-10 border rounded-md p-2 text-center'
                         name='pin'
                         onChange={inputChange}
+                        required
                         maxLength={1}/>
                     </div>
     
@@ -149,6 +184,7 @@ const CreatePin = () => {
                         className='pin w-10 border rounded-md p-2 text-center'
                         name='pin'
                         onChange={inputChange}
+                        required
                         maxLength={1}/>
                     </div>
     
@@ -159,6 +195,7 @@ const CreatePin = () => {
                         className='pin w-10 border rounded-md p-2 text-center'
                         name='pin'
                         onChange={inputChange}
+                        required
                         maxLength={1}/>
                     </div>
     
@@ -169,6 +206,7 @@ const CreatePin = () => {
                         className='pin w-10 border rounded-md p-2 text-center'
                         name='pin'
                         onChange={inputChange}
+                        required
                         maxLength={1}/>
                     </div>
                 </div>
