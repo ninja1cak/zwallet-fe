@@ -11,7 +11,7 @@ function Header() {
 
     return(
         <>
-            <div className="shadow-lg hidden md:block rounded-b-3xl bg-white">
+            <div className="hidden md:block rounded-b-3xl bg-white">
                 <div className="flex justify-between px-4 py-16 w-[100%] max-w-7xl mx-auto">
                     <h1 className="text-4xl font-medium text-primary">Zwallet</h1>
                     <Link to='/profile'>

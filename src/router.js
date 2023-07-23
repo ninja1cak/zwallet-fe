@@ -47,6 +47,8 @@ function Router() {
             <Route path="/success" element={<Success />} />
             <Route path="/failed" element={<Failed />} />
             <Route path= "/topup" element={<Topup />} />
+            <Route path= "/change-password" element={<ChangePassword />} />
+
 
         </Routes>
         </BrowserRouter>
