@@ -23,7 +23,6 @@ function Transfer () {
     const getUser = async () => {
         try {
             const {data} = await api.get(`/user/all?limit=5&page=${currentPage}&search=${searchQuery}`)
-            console.log(data)
             setUser(data.data)
             setTotalPages(Math.ceil(data.meta.total / 5))
         } catch (error) {   
