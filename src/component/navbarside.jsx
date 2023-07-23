@@ -29,7 +29,7 @@ const NavbarSide = () => {
                 </svg>
                 <p>Transfer</p>
             </Link>
-            <Link to='/' className='flex flex-row gap-x-5 mt-5 hover:border-l-2 hover:border-primary hover:text-primary ps-2 pl-8 py-4'>
+            <Link to='/topup' className='flex flex-row gap-x-5 mt-5 hover:border-l-2 hover:border-primary hover:text-primary ps-2 pl-8 py-4'>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                 </svg>          

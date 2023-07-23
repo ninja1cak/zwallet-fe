@@ -23,6 +23,7 @@ function Confirmation () {
     const [showModal, setShowModal] = React.useState(false);
     const { amount, note, data } = useSelector ((s) => s.users)
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    const {isAuth} = useSelector ((s) => s.users)
 
     const validatePin = () => {
       return data.pin === otp
@@ -43,12 +44,7 @@ function Confirmation () {
       alert('INVALID PIN please try again')
     }
   }
-    const getCurrentDateTime = () => {
-      const currentDate = new Date();
-      let date = currentDate.toUTCString();
 
-      return `${date}`;
-    };
 
     const getUserTransfer = async () => {
         try {
@@ -62,9 +58,7 @@ function Confirmation () {
     const getTransaction = async () => {
       try {
         const {data} = await api.get ('/transaction')
-        console.log(data)
         setTransaction = (data.data)
-        console.log(setTransaction)
       } catch (error) {
         
       }
@@ -72,19 +66,25 @@ function Confirmation () {
     useEffect(()=> {
         getUserTransfer()
         getTransaction()
-        getCurrentDateTime()
+     
         const date = new Date()
         setDateTransfer(date.toLocaleDateString(undefined, options)+' - '+ date.toLocaleTimeString('it-IT'))
         setDateJSON(date.toLocaleDateString(undefined, options) + ' ' + date.toLocaleTimeString('it-IT'))
     },[])
+    
+    useEffect(()=> {
+      if (!isAuth) {
+          navigate ('/')
+        }
+  },[isAuth])
     return (
-        <>
-        <Header/>
-        <main className="flex flex-row w-full bg-gray-300 gap-x-10 px-20">
-        <div className="w-1/3">
-            <NavbarSide/>
-        </div>
-        <div className="bg-white rounded-lg px-10 py-10 w-2/3 flex flex-col gap-y-5">
+      <>
+      <div className="hidden lg:block"><Header /></div>
+      <main className="w-full bg-gray-100">
+      <div className="flex flex-row w-full max-w-7xl mx-auto bg-gray-100 gap-x-4 ">
+
+          <NavbarSide />            
+          <div className="bg-white rounded-lg px-10 py-10 w-full flex flex-col gap-y-5 mt-4">
             <h1>Transfer To</h1>
             {user.map((v) => {
                 return <Contact image={v.photo_profile} first_name={v.first_name} last_name={v.last_name} phone={v.phone_number} disabled/>
@@ -163,9 +163,11 @@ function Confirmation () {
       ) : null}
             </div>
         </div>
-        </main>
-        <Footer/>
-        </>
+
+      </div>
+      </main>
+      <div className="hidden lg:block"><Footer /></div>
+      </>
     )
 }
 
