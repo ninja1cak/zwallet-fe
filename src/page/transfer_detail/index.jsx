@@ -33,7 +33,6 @@ function TransferDetail (id) {
             setUser(data.data)
             console.log(data)
         } catch (error) {
-            
         }
     }
     useEffect(()=> {
@@ -41,13 +40,13 @@ function TransferDetail (id) {
     },[])
     return (
        <>
-       <Header />
+       <div className="hidden lg:block"><Header /></div>
        <main className="bg-gray-200 pb-10">
        <div className="flex flex-row w-4/5 mx-auto gap-x-10">
-        <div className="w-1/3 justify-center items-center mt-5">
-            <NavbarSide />
+        <div className="lg:block w-1/3 hidden justify-center items-center mt-5">
+            <NavbarSide/>
         </div>
-        <div className="flex flex-col w-2/3 pt-5 pr-5 bg-white pl-10 mt-10 rounded-lg pb-10">
+        <div className="flex flex-col w-full lg:w-2/3 pt-5 pr-5 bg-white pl-10 mt-10 rounded-lg pb-10">
             <h1 className="text-2xl font-bold mb-5">Transfer Money</h1>
             {user.map((v) => {
                 return <Contact image={v.photo_profile} first_name={v.first_name} last_name={v.last_name} phone={v.phone_number} disabled/>
@@ -58,7 +57,7 @@ function TransferDetail (id) {
             <p className="text-center font-bold text-xl">{convertRupiah.convert(data.balance)} Available</p>
             <div className=" border-b border-gray-400 flex flex-row py-5 mt-10 w-1/2 mx-auto focus:outline-0 gap-x-5">
                 <img src={search} alt="" className="ml-5"/>
-                <input type="text" name="note" onChange={inputChange} className="border-none w-full focus:outline-0 text-base text-gray-400" placeholder="Add some notes"/>
+                <input  type="text" name="note" onChange={inputChange} className="border-none w-full focus:outline-0 text-base text-gray-400" placeholder="Add some notes"/>
             </div>
             <div className="flex flex-row items-end justify-end mr-20 mt-20">
             <button className="bg-primary text-white text-2xl  px-10 py-3 rounded-lg"  onClick={() => navigate(`/confirmation/${user[0].user_id}`)} >Continue</button>
@@ -66,7 +65,7 @@ function TransferDetail (id) {
         </div>
        </div>
        </main>
-       <Footer />
+        <div className="hidden lg:block"> <Footer /></div>
        </>
 
     )

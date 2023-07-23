@@ -5,7 +5,7 @@ import NavbarSide from "../../component/navbarside";
 import Contact from "../../component/Contact";
 import { useState, useEffect } from "react";
 import useApi from "../../helpers/useApi";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import OtpInput from 'react-otp-input';
 import { useSelector } from 'react-redux/es/hooks/useSelector'
 import convertRupiah from 'rupiah-format'
@@ -15,26 +15,40 @@ function Confirmation () {
     const [otp, setOtp] = useState('');
     const params = useParams()
     const api = useApi()
+    const navigate = useNavigate()
     const [dateTransfer, setDateTransfer] = useState('')
     const [dateJSON, setDateJSON] = useState('')
     const [user, setUser] = useState ([])
+    const [transaction, setTransaction] = useState ([])
     const [showModal, setShowModal] = React.useState(false);
     const { amount, note, data } = useSelector ((s) => s.users)
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
 
-
+    const validatePin = () => {
+      return data.pin === otp
+    }
     const transfer = async () => {
+      if (validatePin()){
       try {
         const response = await api.post('transaction?receiver_id=' + params.id, {
           amount: amount,
           note: note,
           transfer_date: dateJSON
         });
-        console.log(response)
+        navigate('/success')
       } catch (error) {
         
       }
+    } else {
+      alert('INVALID PIN please try again')
     }
+  }
+    const getCurrentDateTime = () => {
+      const currentDate = new Date();
+      let date = currentDate.toUTCString();
+
+      return `${date}`;
+    };
 
     const getUserTransfer = async () => {
         try {
@@ -44,8 +58,21 @@ function Confirmation () {
             
         }
     }
+
+    const getTransaction = async () => {
+      try {
+        const {data} = await api.get ('/transaction')
+        console.log(data)
+        setTransaction = (data.data)
+        console.log(setTransaction)
+      } catch (error) {
+        
+      }
+    }
     useEffect(()=> {
         getUserTransfer()
+        getTransaction()
+        getCurrentDateTime()
         const date = new Date()
         setDateTransfer(date.toLocaleDateString(undefined, options)+' - '+ date.toLocaleTimeString('it-IT'))
         setDateJSON(date.toLocaleDateString(undefined, options) + ' ' + date.toLocaleTimeString('it-IT'))
@@ -102,6 +129,7 @@ function Confirmation () {
                 <div className="relative p-6 flex-col items-center flex justify-center">
                             <OtpInput
                 value={otp}
+                name="pin"
                 onChange={setOtp}
                 numInputs={6}
                 renderSeparator={<span>-</span>}
@@ -123,9 +151,7 @@ function Confirmation () {
                   <button
                     className="bg-primary px-8 py-5 text-white font-bold rounded-lg hover:shadow-lg"
                     type="button"
-                    onClick={transfer}
-
-                  >
+                    onClick={transfer}>
                     Continue
                   </button>
                 </div>
@@ -136,11 +162,7 @@ function Confirmation () {
         </>
       ) : null}
             </div>
-            
         </div>
-        
-   
-
         </main>
         <Footer/>
         </>
