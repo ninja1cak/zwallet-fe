@@ -1,9 +1,52 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import NavbarSide from '../../component/navbarside'
 import Header from '../../component/header'
 import Footer from '../../component/footer'
+import { useNavigate } from 'react-router-dom'
+import useApi from '../../helpers/useApi'
 
 function ChangeNumber() {
+    const[user, setUser] = useState([]) 
+    const [form, setForm] = useState([]) 
+
+    const api = useApi()
+    const navigate = useNavigate()
+
+    const getUser = async() =>{
+
+        const { data } = await api.get('/user')
+        setUser(data.data[0])
+    }
+
+    const inputChange = (e) =>{
+        const data = {...form}
+        data[e.target.name] = e.target.value
+        setForm(data)
+    }
+
+    const updatePhone = async () =>{
+        await api({
+            method: 'PATCH',
+            url: '/user/update',
+            data: form
+        })
+        .then(({data}) => {
+            console.log('Nomor handphone berhasil di update', data)
+
+            setTimeout(()=>{
+                navigate('/personal_info')
+            })
+        },3000)
+        .catch((er)=>{
+            console.log(er)
+        })
+    }
+
+    useEffect(()=>{
+        getUser()
+    },[])
+
+    console.log(user)
   return (
     <div>
           <div className="bg-gray-100">
@@ -37,14 +80,19 @@ function ChangeNumber() {
                                     <label className='font-bold'>+62</label>
                                     <input 
                                     type='number'
-                                    className='w-full rounded-md p-2 items-center'/>
+                                    name='phone_number'
+                                    className='w-full rounded-md p-2 items-center'
+                                    placeholder={user.phone_number}
+                                    onChange={inputChange}/>
                                 </div>
                                 <hr className='w-full bg-gray-500 h-0.5'/>
                             </div>
                         </div>
 
                         <div className='w-full mt-36 bg-gray-300 rounded-md text-center p-2'>
-                            Confirm
+                            <button className="btn btn-ghost" onClick={updatePhone}>    
+                                Confirm
+                            </button>
                         </div>
                     </div>
                 </div>
