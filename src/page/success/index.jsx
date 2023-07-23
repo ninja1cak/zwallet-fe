@@ -24,6 +24,7 @@ function Success () {
       const getUserTransfer = async () => {
         try {
             const {data} = await api.get(`/user/all?id=${dataTransfer[0].receiver_id}`)
+            console.log(data)
             setUserReceiver(data.data)
         } catch (error) {
         }
@@ -42,7 +43,6 @@ function Success () {
     const getTransaction = async () => {
         try {
           const {data} = await api.get ('/transaction')
-          console.log(data)
           setDataTransfer (data.data[0])
         } catch (error) {
           
