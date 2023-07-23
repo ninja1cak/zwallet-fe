@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../../component/header";
 import Footer from "../../component/footer";
 import profile from "../../assets/profile.png"
@@ -6,9 +6,27 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare, faArrowRight, faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import NavbarSide from "../../component/navbarside";
 import { Link } from "react-router-dom";
+import { async } from "q";
+import useApi from "../../helpers/useApi";
 
 
 function PersonalInfo() {
+    // const [user, setUser] = useState()
+
+    // const api = useApi()
+
+    // const getUser = async () => {
+    //     const {data} = await api('/user/all')
+    //     setUser(data.data[0])
+    //     console.log(data)
+    // }
+
+    // console.log(user)
+
+    // useEffect(() => {
+    //     getUser()
+    // },[])
+
     return (
         <>
             <div className="bg-gray-100">
