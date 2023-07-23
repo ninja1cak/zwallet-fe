@@ -15,7 +15,7 @@ import Default_photo from '../../assets/default_photo.png'
 
 function Home() {
     const {data, isAuth} = useSelector((s) => s.users)
-    const navigate = useNavigate()
+    const navigate = useNavigate()  
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
     const [transactionLog, setTransactionLog] = useState([])
     const [user, setUser] = useState([])

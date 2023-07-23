@@ -31,7 +31,7 @@ function Header() {
                         <ul className=" absolute right-0 dropdown-content z-[1] menu p-6 shadow bg-base-100 rounded-box w-72 ">
                             <p className=" text-gray-500 mb-2">This Week</p>
                             {
-                                transactionLog ? transactionLog.map((e) =>{
+                                transactionLog && transactionLog.length ? transactionLog.map((e) =>{
                                     if(e.sender_id == data.user_id){
                                         return (
                                             <>                                        
