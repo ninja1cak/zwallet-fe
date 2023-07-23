@@ -12,7 +12,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBell, faArrowDown, faArrowUp } from '@fortawesome/free-solid-svg-icons'
 import Default_photo from '../../assets/default_photo.png'
-
+import dummyGraph from '../../assets/graphic.png'
 function Home() {
     const {data, isAuth} = useSelector((s) => s.users)
     const navigate = useNavigate()  
@@ -89,7 +89,7 @@ function Home() {
             <div className="flex justify-between px-4 pt-16 pb-10 w-[100%] max-w-7xl mx-auto ">
                 <div className="dropdown dropdown-hover w-full ">
                     <div className="flex items-center justify-between  w-[100%]  gap-4">
-                        <div className=" flex">
+                        <div className=" flex gap-x-4">
                             <img className=" w-12 h-12 " src={user.photo_profile ? user.photo_profile : Default_photo} alt="profile_picture" />
                             <div>
                             <p>Hello,</p>
@@ -110,7 +110,7 @@ function Home() {
         </div>
 
         <main className=" bg-gray-100">
-            <div className="flex w-[100%] mx-auto max-w-7xl gap-x-4 h-[700px] ">
+            <div className="flex w-[100%] mx-auto max-w-7xl gap-x-4 md:h-[700px] ">
                 
                 <NavbarSide />
                 <div className=" block w-[100%] my-5 ">
@@ -124,6 +124,21 @@ function Home() {
                             <button className=" block btn w-32 mb-4 bg-indigo-400 text-white" onClick={() => navigate('/transfer')}>Transfer</button>
                             <button className=" btn w-32 bg-indigo-400 text-white">Top Up</button>
                         </div>
+                    </section>
+                    <section className=" block md:hidden bg-white w-full p-4 mt-4 rounded-lg">
+                            <div className="flex justify-between">
+                                <div>
+                                    <FontAwesomeIcon icon={faArrowDown} style={{color: 'green'}} className="w-6 h-6"  />
+                                    <p className=" font-medium text-gray-500">Income</p>
+                                    <p className=" font-bold text-lg">{convertRupiah.convert(user.income)}</p>
+                                </div>
+                                <div>
+                                    <FontAwesomeIcon icon={faArrowUp} style={{color: 'red'}} className="w-6 h-6" />
+                                    <p className=" font-medium text-gray-500">Expense</p>
+                                    <p className=" font-bold text-lg">{convertRupiah.convert(user.expense)}</p>
+                                </div>
+                            </div>
+                            <img src={dummyGraph} alt="" />
                     </section>
                     <div className="w-[100%] flex justify-between gap-x-4">
                         <section className=" hidden md:block bg-white w-[55%] p-4 mt-4 rounded-lg">
@@ -139,6 +154,7 @@ function Home() {
                                     <p className=" font-bold text-lg">{convertRupiah.convert(user.expense)}</p>
                                 </div>
                             </div>
+                            <img src={dummyGraph} alt="" />
                         </section>
                         <section className="bg-white w-[100%] md:w-[50%]  p-6 mt-4 rounded-lg">
                             <div className=" flex justify-between mb-8">

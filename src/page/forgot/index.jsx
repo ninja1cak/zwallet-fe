@@ -35,9 +35,9 @@ function Forgot() {
 
     return (
         <>
-            <div className="bg-gray-100 block md:grid grid-cols-2">
+            <Sidebar />
+            <div className="absolute md:top-0 md:right-0 md:-me-0 md:p-5 md:inline-block  md:w-2/5 mx-10 md:pb-0">
                 <div className="hidden md:block">
-                    <Sidebar />
                 </div>
                 <div className="block md:hidden text-center pt-20 mb-28">
                     <h1 className="text-3xl font-medium text-primary">Zwallet</h1>

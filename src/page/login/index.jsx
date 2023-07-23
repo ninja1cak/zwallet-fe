@@ -60,9 +60,9 @@ function Login() {
     },[form])
     return (
         <>
-            <div className="bg-gray-100 block md:grid grid-cols-2">
+            <Sidebar />
+            <div className="absolute md:top-0 md:right-0 md:-me-0 md:p-5 md:inline-block  md:w-2/5 mx-10 md:pb-0">
                 <div className="hidden md:block">
-                    <Sidebar />
                 </div>
                 <div className="block md:hidden text-center pt-20 mb-28">
                     <h1 className="text-3xl font-medium text-primary">Zwallet</h1>
@@ -90,15 +90,15 @@ function Login() {
                         </div>
                     </div>
                     <div className="text-end md:text-center lg:text-end mb-14 md:mb-16 lg:mb-44">
-                        <Link to="/#" className="text-lg">Forgot password?</Link>
+                        <Link to="/forgot" className="text-lg">Forgot password?</Link>
                     </div>
-                    <div className="mb-12">
+                    <div className="mb-4">
                         <button className="btn btn-primary w-full h-16 rounded-2xl text-lg capitalize" onClick={goLogin} disabled={btnState}>Login</button>
                     </div>
                     <div className="text-center">
                         <span>Don't have an account?</span>
                         <span className="ml-1 mr-2">Let's</span>
-                        <Link to="/#" className="text-primary text-lg font-bold">Sign Up</Link>
+                        <Link to="/register" className="text-primary text-lg font-bold">Sign Up</Link>
                     </div>
                 </div>
             </div>

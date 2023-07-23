@@ -20,10 +20,10 @@ function PersonalInfo() {
     return (
         <>
             <div className="bg-gray-100">
-                <div className="hidden md:block"><Header /></div>
-                <div className="flex gap-8 w-[100%] mx-auto max-w-7xl my-14">
+                <Header />
+                <div className="flex gap-8 w-[100%] mx-auto max-w-7xl">
                 <NavbarSide />
-                    <div className="w-full bg-white md:rounded-3xl shadow-lg">
+                    <div className="w-full bg-white md:rounded-3xl my-4">
                         <div className="flex items-center md:hidden pl-16 ">
                             <Link to='/profile'><FontAwesomeIcon icon={faArrowLeft} className="text-gray-500 pr-5" size="xl" /></Link>
                             <h1 className="text-xl font-medium ">Personal Information</h1>
