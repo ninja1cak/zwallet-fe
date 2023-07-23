@@ -2,92 +2,31 @@ import React, {useEffect, useState} from 'react'
 import Sidebar from '../../component/sidebar'
 import axios from 'axios'
 import { useNavigate, useParams } from 'react-router-dom'
+import OtpInput from 'react-otp-input';
 
 const CreatePin = () => {
-    const [form, setForm] = useState([])
     const navigate = useNavigate()
     const {code} = useParams()
     const [email, setEmail] = useState('')
+    const [otp, setOtp] = useState('');
+    const [btnState, setBtnState] = useState(true)
 
-
-    const inputChange = (e) =>{
-        const pin1 = document.getElementById('pin1').value
-        const pin2 = document.getElementById('pin2').value
-        const pin3 = document.getElementById('pin3').value
-        const pin4 = document.getElementById('pin4').value
-        const pin5 = document.getElementById('pin5').value
-        const pin6 = document.getElementById('pin6').value
-        // if(isNaN(pin1)|| pin1 == ''){
-        //     console.log('ini adalah huruf dan huruf kosong')
-        // }
-        // else if(pin1 == ''){
-        //     console.log('ini adalah kosong')
-        // }
-        // else{
-        //     console.log('ini adalah huruf')
-        // }
-        // console.log(pin2)
-        let mergePin = ''
-
-        if(isNaN(pin1)){
-            return alert('kolom 1 bukan angka')
+    useEffect(() =>{
+        if(otp.length <6){
+            setBtnState(true)
+        }else{
+            setBtnState(false)
         }
-        else if(pin1==''){
-            alert('mohon masukkan angka di kolom pertama')
-        }
-
-        if(isNaN(pin2)){
-            return alert('kolom 2 bukan angka')
-        }
-        else if(pin2==''){
-            alert('mohon masukkan angka di kolom kedua')
-        }
-
-        if(isNaN(pin3)){
-            return alert('kolom 3 bukan angka')
-        }
-        else if(pin3==''){
-            alert('mohon masukkan angka di kolom 3')
-        }
-
-        if(isNaN(pin4)){
-            return alert('kolom 4 bukan angka')
-        }
-        else if(pin4==''){
-            alert('mohon masukkan angka di kolom 4')
-        }
-
-        if(isNaN(pin5)){
-            return alert('kolom 5 bukan angka')
-        }
-        else if(pin5==''){
-            alert('mohon masukkan angka di kolom 5')
-        }
-
-        if(isNaN(pin6)){
-            return alert('kolom 6 bukan angka')
-        }
-        else if(pin6==''){
-            alert('mohon masukkan angka di kolom 6')
-        }
-
-        mergePin = pin1.concat(pin2, pin3,pin4, pin5, pin6)
-
-
-        //console.log(mergePin)
-        setForm({pin: mergePin})
-
-
-    }
-    console.log(form)
-    // console.error()
+    }, [otp])
 
 
     const inputPin = async () =>{
             await axios({
                 method: "PUT",
                 url: `http://localhost:8888/user?email=${email}`,
-                data: form
+                data: {
+                    pin: otp
+                }
             })
             .then(({data}) => {
                 console.log('PIN Berhasil ditambahkan!', data)
@@ -143,79 +82,22 @@ const CreatePin = () => {
                     Zwallet account password and the PIN.</p>
                 </div>
     
-                <div className='w-full flex flex-row py-5 xs:mt-48 sm:mx-5 md:mx-0 md:mt-0'>
-                    <div className='w-full'>
-                        <input 
-                        type='text'
-                        id='pin1'
-                        className='pin w-10 border rounded-md p-2 text-center'
-                        name='pin'
-                        onChange={inputChange}
-                        required
-                        maxLength={1}/>
-                    </div>
-    
-                    <div className='w-full'>
-                        <input 
-                        type='text'
-                        id='pin2'
-                        className='pin w-10 border rounded-md p-2 text-center'
-                        name='pin'
-                        onChange={inputChange}
-                        required
-                        maxLength={1}/>
-                    </div>
-    
-                    <div className='w-full'>
-                        <input 
-                        type='text'
-                        id='pin3'
-                        className='pin w-10 border rounded-md p-2 text-center'
-                        name='pin'
-                        onChange={inputChange}
-                        required
-                        maxLength={1}/>
-                    </div>
-    
-                    <div className='w-full'>
-                        <input 
-                        type='text'
-                        id='pin4'
-                        className='pin w-10 border rounded-md p-2 text-center'
-                        name='pin'
-                        onChange={inputChange}
-                        required
-                        maxLength={1}/>
-                    </div>
-    
-                    <div className='w-full'>
-                        <input 
-                        type='text'
-                        id='pin5'
-                        className='pin w-10 border rounded-md p-2 text-center'
-                        name='pin'
-                        onChange={inputChange}
-                        required
-                        maxLength={1}/>
-                    </div>
-    
-                    <div className='w-full'>
-                        <input 
-                        type='text'
-                        id='pin6'
-                        className='pin w-10 border rounded-md p-2 text-center'
-                        name='pin'
-                        onChange={inputChange}
-                        required
-                        maxLength={1}/>
-                    </div>
+                <div className='w-full flex flex-row justify-center mb-10'>
+                            <OtpInput
+                            value={otp}
+                            onChange={setOtp}
+                            numInputs={6}
+                            renderSeparator={<span className=' ml-5'> </span>}
+                            renderInput={(props) => <input {...props} />}
+                            inputType='number'
+                            inputStyle={{width:"35px", height: "40px", border: "solid 2px gray", borderRadius: "10px"}}
+                            />
+
                 </div>
     
-                <div className='bg-gray-300 text-center p-2 rounded-md mb-2 sm:w-full sm:mx-5 md:mx-0' onClick={inputPin}>
-                    <button className=' btn btn-ghost w-full ' onClick={inputPin}>
+                    <button className=' btn  w-full ' onClick={inputPin} disabled={btnState}>
                         Confirm
                     </button>
-                </div>
     
             </div>
     

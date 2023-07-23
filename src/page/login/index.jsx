@@ -16,7 +16,7 @@ function Login() {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const [btnState, setBtnState] = useState(true)
-
+    const [status, setStatus] = useState(0)
 
     const inputChange = (e) =>{
         const data = {...form}
@@ -32,7 +32,7 @@ function Login() {
                 data: form,
                 url:'/auth/'
             })
-
+            setStatus(data.status)
             if(data.status == 201){
                 const token = data.token
                 dispatch(login(token))
@@ -81,13 +81,22 @@ function Login() {
                             <FontAwesomeIcon className="md:h-5 lg:h-6" icon={faEnvelope} color="gray" size="xl" />
                             <input className="text-lg md:placeholder:text-sm lg:placeholder:text-lg bg-inherit ml-8" type="text" name='email' onChange={inputChange} placeholder="Enter your e-mail" />
                         </div>
-                        <div className="flex items-center border-b-3 pb-3 mb-2 md:mb-12">
+                        <div className="flex items-center border-b-3 pb-3 mb-2 ">
                             <FontAwesomeIcon className="md:h-5 lg:h-6" icon={faLock} color="gray" size="xl" />
                             <div className="flex items-center ">
                                 <input className="text-lg md:placeholder:text-sm lg:placeholder:text-lg bg-inherit ml-8 md:w-4/5 lg:w-full" type="password" name='password' onChange={inputChange} placeholder="Enter your password" />
                             </div>
                             <FontAwesomeIcon className="pl-16 md:pl-0 lg:pl-52" icon={faEyeSlash} color="gray" size="sm" />
                         </div>
+                        {
+                            status === 401 ? 
+                            <p className="md:mb-8 text-red-500 font-medium">Wrong password</p>
+                            : status === 400 ?
+                            <p className="md:mb-8 text-red-500 font-medium">Email is not registered</p>
+                            : null
+
+                        }
+
                     </div>
                     <div className="text-end md:text-center lg:text-end mb-14 md:mb-16 lg:mb-44">
                         <Link to="/forgot" className="text-lg">Forgot password?</Link>
