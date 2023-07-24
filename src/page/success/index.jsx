@@ -28,6 +28,7 @@ function Success () {
       const getUserTransfer = async () => {
         try {
             const {data} = await api.get(`/user/all?id=${dataTransfer.receiver_id}`)
+            console.log(data)
             setUserReceiver(data.data)
         } catch (error) {
             console.log(error)
@@ -59,23 +60,24 @@ function Success () {
     const getTransaction = async () => {
         try {
           const {data} = await api.get ('/transaction')
+          console.log(data)
           setDataTransfer (data.data[0])
         } catch (error) {
           
         }
       }
     useEffect(()=> {
-  
+        
+        getUserTransfer()
         getDataUser()
-    },[])
+    },[dataTransfer])
     useEffect(() => {
         if (!isAuth) {
             navigate ('/')
           }
-        getTransaction()
-        getUserTransfer()
-        
-    },[dataTransfer,userReceiver,isAuth])
+          getTransaction()
+          
+    },[isAuth])
     return (
         <>
         <div className="hidden lg:block"><Header /></div>
