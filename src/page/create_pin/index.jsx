@@ -23,7 +23,7 @@ const CreatePin = () => {
     const inputPin = async () =>{
             await axios({
                 method: "PUT",
-                url: `http://localhost:8888/user?email=${email}`,
+                url: `https://zwallet-be.vercel.app/user?email=${email}`,
                 data: {
                     pin: otp
                 }
