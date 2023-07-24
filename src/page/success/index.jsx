@@ -70,13 +70,14 @@ function Success () {
         
         getUserTransfer()
         getDataUser()
+        navigate('/success')
     },[dataTransfer])
     useEffect(() => {
         if (!isAuth) {
             navigate ('/')
           }
           getTransaction()
-          
+
     },[isAuth])
     return (
         <>

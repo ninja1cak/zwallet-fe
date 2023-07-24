@@ -14,7 +14,7 @@ import { useApiMulti } from "../../helpers/useApi";
 
 
 function Profile() {
-    const { data } = useSelector((s)=>s.users)
+    const { data, isAuth } = useSelector((s)=>s.users)
     const [image, setImage] = useState('')
     const [state, setState] = useState(true)
     const dispatch = useDispatch()
@@ -46,7 +46,11 @@ function Profile() {
             navigate('/home')
         }
     }
-
+    useEffect(() =>{
+        if(!isAuth){
+            navigate('/')
+          }
+    },[])
     useEffect(() =>{
         console.log(state)
     }, [state])

@@ -5,16 +5,19 @@ import profile from "../../assets/profile.png"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare, faArrowRight, faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import NavbarSide from "../../component/navbarside";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useApi from "../../helpers/useApi";
 import { useSelector } from "react-redux";
 
 
 function PersonalInfo() {
-    const { data } = useSelector((s)=>s.users)
+    const { data, isAuth } = useSelector((s)=>s.users)
+    const navigate = useNavigate()
     console.log(data)
-    useEffect(() => {
-        
+    useEffect(() =>{
+        if(!isAuth){
+            navigate('/')
+          }
     },[])
 
     return (

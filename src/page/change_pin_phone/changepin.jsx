@@ -13,7 +13,7 @@ function ChangePin ()  {
     const [pin, setPin]= useState('')
     const [response, setResponse] = useState(0)
     const [showModal, setShowModal] = useState(false)
-    const {data} = useSelector((s) => s.users)
+    const {data, isAuth} = useSelector((s) => s.users)
     const [status, setStatus] = useState(0)
     const [btnState, setBtnState] = useState(true)
     const api = useApi()
@@ -55,6 +55,12 @@ function ChangePin ()  {
             setBtnState(false)
         }
     }, [otp])
+
+    useEffect(() =>{
+        if(!isAuth){
+          navigate('/')
+        }
+  }, [])
 
   return (
     <div>

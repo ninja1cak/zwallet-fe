@@ -4,6 +4,7 @@ import Header from '../../component/header'
 import Footer from '../../component/footer'
 import { useNavigate } from 'react-router-dom'
 import useApi from '../../helpers/useApi'
+import { useSelector } from 'react-redux'
 
 function ChangeNumber() {
     const[user, setUser] = useState([]) 
@@ -11,7 +12,7 @@ function ChangeNumber() {
     const [btnState, setBtnState] = useState(true)
     const api = useApi()
     const navigate = useNavigate()
-
+    const {isAuth} = useSelector((s) => s.users)
     const getUser = async() =>{
 
         const { data } = await api.get('/user')
@@ -41,10 +42,15 @@ function ChangeNumber() {
             console.log(er)
         })
     }
+    
+    useEffect(() =>{
+        if(!isAuth){
+          navigate('/')
+        }else{
+            getUser()
+        }
+  }, [])
 
-    useEffect(()=>{
-        getUser()
-    },[])
     useEffect(()=>{
         console.log(form.phone_number)
         if(form.length === 0 || form.phone_number === '+62'){
