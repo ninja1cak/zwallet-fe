@@ -3,7 +3,7 @@ import Header from '../../component/header'
 import Footer from '../../component/footer'
 import NavbarSide from '../../component/navbarside'
 import useApi from '../../helpers/useApi'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import convertRupiah from 'rupiah-format'
 import Card from '../../component/card'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -12,6 +12,7 @@ import { useNavigate } from 'react-router'
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import { DateRange } from 'react-date-range';
+import { login, logout } from '../../store/reducer/user'
 
 function ChangePassword() {
     const api = useApi()
@@ -23,7 +24,7 @@ function ChangePassword() {
     const [confirmPassword, setConfirmPassword] = useState('')
     const [status, setStatus] = useState(0)
     const [btnState, setBtnState] = useState(true)
-
+    const dispatch = useDispatch()
     const handleClick = async () =>{
         if(newPassword !== confirmPassword){
             setStatus(500)
@@ -31,6 +32,7 @@ function ChangePassword() {
             const {data} = await api.patch('/user/update',{password: newPassword, oldPassword : password, email: email})
             console.log(data)
             setStatus(data.status)
+            console.log(data.status)
         }
     }
     
@@ -40,6 +42,13 @@ function ChangePassword() {
             setBtnState(true)
         }else{
             setBtnState(false)
+        }
+
+        if(status === 200){
+            setTimeout(() => {
+                dispatch(logout())
+                navigate('/login')
+            },[])
         }
     },[status, password, confirmPassword, newPassword])
    

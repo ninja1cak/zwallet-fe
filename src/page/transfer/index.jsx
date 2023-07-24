@@ -7,6 +7,7 @@ import useApi from "../../helpers/useApi";
 import NavbarSide from "../../component/navbarside";
 import { useSelector} from 'react-redux'
 import { useNavigate } from "react-router-dom";
+import Default_photo from '../../assets/default_photo.png'
 function Transfer () {
     const api = useApi()
     const [user,setUser] = useState([])
@@ -65,7 +66,7 @@ function Transfer () {
                 <div className="flex flex-col gap-y-5 mt-10 h-[500px]">
                 { user ? ( 
                     user.map((v)=>{
-                        return <Contact image={v.photo_profile} first_name={v.first_name} last_name={v.last_name} phone={v.phone_number} id={v.user_id}  />
+                        return <Contact image={v.photo_profile || Default_photo} first_name={v.first_name} last_name={v.last_name} phone={v.phone_number} id={v.user_id}  />
                     })):(<h1>data not found</h1>)
                 }
                 </div>
