@@ -62,11 +62,11 @@ function ChangePin ()  {
             <div className="hidden md:block"><Header /></div>
             <div className="flex gap-4 w-[100%] mx-auto max-w-7xl">
                 <NavbarSide />
-                <div className="w-full  bg-white md:rounded-3xl my-4 md:h-[700px]">
-                    <div className="flex flex-col py-12 md:py-10 px-8 gap-y-24 md:h-[700px]">
+                <div className="w-full bg-gray-100  md:bg-white md:rounded-3xl my-4 h-[800px] md:h-[700px]">
+                    <div className="flex flex-col py-12 md:py-10 px-8 gap-y-24 h-[800px] justify-between md:h-[700px]">
                         <div >
                         <div className="flex items-center md:hidden gap-x-5 top-4 absolute ">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 text-gray-500">
+                            <svg onClick={() => {navigate('/profile')}} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 text-gray-500">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 12h-15m0 0l6.75 6.75M4.5 12l6.75-6.75" />
                             </svg>
                             <h1 className="text-xl font-medium ">Change PIN</h1>
@@ -116,7 +116,7 @@ function ChangePin ()  {
                             :
                             <button 
                                 disabled = {btnState}
-                                className="w-[50%] btn mx-auto " 
+                                className="w-[100%] md:w-[50%] btn mx-auto " 
                                 onClick={checkPin}>    
                                 Confirm
                             </button>
@@ -124,7 +124,7 @@ function ChangePin ()  {
                     </div>
                 </div>
             </div>
-            <div className="hidden md:block"><Footer /></div>
+            <Footer />
         </div>
 
         {showModal ? (

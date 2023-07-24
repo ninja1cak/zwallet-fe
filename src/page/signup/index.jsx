@@ -3,6 +3,8 @@ import Sidebar from '../../component/sidebar'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { useSelector } from 'react-redux'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEnvelope, faLock, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
 
 const Signup = () => {
 
@@ -52,7 +54,7 @@ const Signup = () => {
     <div>
       <Sidebar/>
 
-      <div className='absolute md:top-3 md:right-0 md:-me-0 md:p-5 md:inline-block  md:w-2/5 mx-10'>
+      <div className='md:absolute w-[90%] mx-auto md:top-3 md:right-0 md:-me-0 md:p-5 md:inline-block  md:w-2/5 md:mx-10'>
         <div className='text-semibold md:text-xl mb-2 xs:hidden md:block'>
             <p>Start Accessing Banking Needs
             With All Devices and All Platforms
@@ -65,11 +67,13 @@ const Signup = () => {
             Desktop, laptop, mobile phone? we cover all of that for you!</p>
         </div>
 
-        <div className='absolute xs:flex xs:justify-center xs:items-center w-full h-32 border mt-10 rounded-lg text-primary md:hidden sm:mx-5 md:mx-0'>
-            <h3>Zwallet</h3>
+        <div className=' font-semibold text-3xl xs:flex xs:justify-center xs:items-center  pt-10 mt-10 rounded-lg text-primary md:hidden sm:mx-5 md:mx-0'>
+            <h1>Zwallet</h1>
+            
         </div>
-
-        <div className='w-full mb-5 xs:mt-48 sm:mx-5 md:mx-0 md:mt-0'>
+        <h2 className='font-semibold text-2xl text-center md:hidden mt-32 mb-4'>Sign Up</h2>
+        <p className=' text-center text-gray-400 mb-10 md:hidden'>Create your account to access Zwallet</p>
+        <div className='mb-5 sm:mx-5 md:mx-0 md:mt-0'>
             <div className='flex flex-row xs:gap-x-3 md:gap-x-5'>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
@@ -85,7 +89,7 @@ const Signup = () => {
             <hr className='w-full bg-gray-200 h-0.5'></hr>
         </div>
 
-        <div className='w-full mb-5 sm:mx-5 md:mx-0'>
+        <div className='mb-5 sm:mx-5 md:mx-0'>
         <div className='flex flex-row xs:gap-x-3 md:gap-x-5'>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
@@ -101,7 +105,7 @@ const Signup = () => {
         <hr className='w-full bg-gray-200 h-0.5'></hr>
     </div>
 
-        <div className='w-full mb-5 sm:mx-5 md:mx-0'>
+        <div className=' mb-5 sm:mx-5 md:mx-0'>
             <div className='flex flex-row xs:gap-x-3 md:gap-x-5'>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
@@ -117,7 +121,7 @@ const Signup = () => {
             <hr className='w-full bg-gray-200 h-0.5'></hr>
         </div>
 
-        <div className='w-full mb-5 sm:mx-5 md:mx-0'>
+        <div className=' mb-5 sm:mx-5 md:mx-0'>
             <div className='w-full flex flex-row'>
                 <div className='flex flex-row xs:gap-x-3 md:gap-x-5'>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
@@ -142,13 +146,13 @@ const Signup = () => {
 
 
 
-        <div className='bg-gray-300 text-center rounded-md mb-2 sm:w-full sm:mx-5 md:mx-0'>
-            <button className=' btn btn-primary w-full ' onClick={Register} disabled={btnState}>
+        <div className='bg-gray-300 text-center rounded-md mb-2 sm:mx-5 md:mx-0'>
+            <button className=' btn bg-primary text-white w-full ' onClick={Register} disabled={btnState}>
                 Sign Up
             </button>
         </div>
 
-        <div className='text-center md:text-xs sm:w-full sm:mx-5 md:mx-0'>
+        <div className='text-center md:text-xs  sm:mx-5 md:mx-0'>
             <p>Already Have an account? Let's <Link to='/login' className='text-blue-500'>Login</Link></p>
         </div>
         {

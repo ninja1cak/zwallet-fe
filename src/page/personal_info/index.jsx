@@ -23,7 +23,7 @@ function PersonalInfo() {
                 <Header />
                 <div className="flex gap-8 w-[100%] mx-auto max-w-7xl">
                 <NavbarSide />
-                    <div className="w-full bg-white md:rounded-3xl my-4">
+                    <div className="w-full bg-gray-100 md:bg-white md:rounded-3xl h-[800px] my-4">
                         <div className="flex items-center md:hidden pl-16 ">
                             <Link to='/profile'><FontAwesomeIcon icon={faArrowLeft} className="text-gray-500 pr-5" size="xl" /></Link>
                             <h1 className="text-xl font-medium ">Personal Information</h1>
@@ -34,19 +34,19 @@ function PersonalInfo() {
                                 <span className=" md:text-lg text-gray-400 leading-loose">We got your personal information from the sign up proccess. If you want to make changes on your information, contact our support.</span>
                             </div>
                             <div className="flex flex-col w-full px-0 md:px-0 mt-10">
-                                <div className="shadow-lg border-t-2 border-slate-100 h-24 md:h-28 rounded-lg px-6 py-4">
+                                <div className="shadow-lg border-t-2 bg-white border-slate-100 h-24 md:h-28 rounded-lg px-6 py-4">
                                     <span className=" md:text-lg text-gray-500 mb-3">First Name</span>
                                     <h1 className="text-xl md:text-2xl font-medium mt-2">{data.first_name}</h1>
                                 </div>
-                                <div className="shadow-lg border-t-2 border-slate-100 h-24 md:h-28 rounded-lg px-6 py-4 mt-5">
+                                <div className="shadow-lg border-t-2 bg-white border-slate-100 h-24 md:h-28 rounded-lg px-6 py-4 mt-5">
                                     <span className="md:text-lg text-gray-500 mb-3">Last Name</span>
                                     <h1 className="text-xl md:text-2xl font-medium mt-2">{data.last_name}</h1>
                                 </div>
-                                <div className="shadow-lg border-t-2 border-slate-100 text-24 md:h-28 rounded-lg px-6 py-4 mt-5">
+                                <div className="shadow-lg border-t-2 bg-white border-slate-100 text-24 md:h-28 rounded-lg px-6 py-4 mt-5">
                                     <span className="md:text-lg text-gray-500 mb-3">Verified E-mail</span>
                                     <h1 className="text-xl md:text-2xl font-medium mt-2">{data.email}</h1>
                                 </div>
-                                <div className="shadow-lg border-t-2 border-slate-100 h-24 md:h-28 rounded-lg px-6 py-4 mt-5">
+                                <div className="shadow-lg border-t-2 bg-white border-slate-100 h-24 md:h-28 rounded-lg px-6 py-4 mt-5">
                                     <span className="md:text-lg text-gray-500 mb-3">Phone Number</span>
                                     <div className="flex justify-between">
                                         <h1 className="text-xl md:text-2xl font-medium mt-2">{ data.phone_number == null ? 'Phone number not set' : data.phone_number }</h1>
@@ -57,7 +57,7 @@ function PersonalInfo() {
                         </div>
                     </div>
                 </div>
-                <div className="hidden md:block"><Footer /></div>
+                <Footer />
             </div>
         </>
     )

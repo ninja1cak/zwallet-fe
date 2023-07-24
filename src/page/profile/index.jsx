@@ -53,11 +53,11 @@ function Profile() {
 
     return (
         <>
-            <div className="bg-gray-100">
+            <div className="md: bg-gray-100">
                 <Header />
                 <div className="flex gap-8 w-[100%] mx-auto max-w-7xl ">
                 <NavbarSide />
-                    <div className="w-full bg-white md:rounded-3xl my-5">
+                    <div className="w-full bg-gray-100 md:bg-white md:rounded-3xl my-5">
                         <div className="block md:hidden pl-16 "><Link to='/home'><FontAwesomeIcon icon={faArrowLeft} className="text-gray-500" size="xl" /></Link></div>
                         <div className="flex flex-col justify-center items-center py-12 md:py-24">
                             <div className="flex flex-col justify-center items-center">
@@ -119,7 +119,7 @@ function Profile() {
                         </div>
                     </div>
                 </div>
-                <div className="hidden md:block"><Footer /></div>
+                <Footer />
             </div>
         </>
     )

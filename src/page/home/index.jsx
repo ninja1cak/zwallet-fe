@@ -85,7 +85,7 @@ function Home() {
         <>
         <Header/>
 
-        <div className="shadow-lg md:hidden rounded-b-3xl bg-white">
+        <Link to='/profile' className="shadow-lg md:hidden rounded-b-3xl bg-white">
             <div className="flex justify-between px-4 pt-16 pb-10 w-[100%] max-w-7xl mx-auto ">
                 <div className="dropdown dropdown-hover w-full ">
                     <div className="flex items-center justify-between  w-[100%]  gap-4">
@@ -101,13 +101,9 @@ function Home() {
                             <FontAwesomeIcon icon={faBell} color="gray" size="xl" />
                         </div>
                     </div>
-                    <ul className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
-                        <li><Link to="/#">adasdasdsa</Link></li>
-                        <li><Link to="/#">ohkfhkfkkm</Link></li>
-                    </ul>
                 </div>
             </div>
-        </div>
+        </Link>
 
         <main className=" bg-gray-100">
             <div className="flex w-[100%] mx-auto max-w-7xl gap-x-4 md:h-[700px] ">

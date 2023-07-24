@@ -50,11 +50,17 @@ function Transfer () {
         <div className="flex flex-row w-[100%] max-w-7xl mx-auto bg-gray-100 gap-x-4 ">
 
             <NavbarSide />            
-            <div className="flex flex-col w-full bg-white rounded-lg px-5 py-10 mt-4">
-                <h1 className="font-bold text-xl mb-5">Search Receiver</h1>
-                <div className="border border-gray-100 flex flex-row rounded-lg bg-gray-100">
+            <div className="flex flex-col w-full bg-gray-100 lg:bg-white rounded-lg px-10 lg:px-5 py-10 mt-4 h-[800px] lg:h-full">
+                <div className="flex items-center lg:hidden gap-x-5 top-4 absolute ">
+                    <svg onClick={() => {navigate('/home')}} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 text-gray-500">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 12h-15m0 0l6.75 6.75M4.5 12l6.75-6.75" />
+                    </svg>
+                    <h1 className="text-xl font-medium ">Find Receiver</h1>
+                </div>
+                <h1 className="font-bold text-xl mb-5 hidden lg:block">Search Receiver</h1>
+                <div className="border border-gray-100 flex flex-row rounded-lg bg-gray-200 lg:bg-gray-100">
                 <img src={Search} alt="" className="object-contain ml-3 " />
-                <input type="text" value={searchQuery} onChange={handleSearchChange} placeholder="Search Receiver Here" className="input border-none w-full bg-gray-100 focus:outline-none" />
+                <input type="text" value={searchQuery} onChange={handleSearchChange} placeholder="Search Receiver Here" className="input border-none w-full bg-gray-200 lg:bg-gray-100 focus:outline-none" />
                 </div>
                 <div className="flex flex-col gap-y-5 mt-10 h-[500px]">
                 { user ? ( 
@@ -87,7 +93,7 @@ function Transfer () {
 
         </div>
         </main>
-        <div className="hidden lg:block"><Footer /></div>
+        <Footer />
         </>
     )
 }

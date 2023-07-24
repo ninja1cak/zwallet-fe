@@ -87,7 +87,13 @@ function Confirmation () {
       <div className="flex flex-row w-full max-w-7xl mx-auto bg-gray-100 gap-x-4 ">
 
           <NavbarSide />            
-          <div className="bg-white rounded-lg px-10 py-10 w-full flex flex-col gap-y-5 mt-4">
+          <div className="bg-gray-100 lg:bg-white rounded-lg px-10 py-10 w-full flex flex-col gap-y-5 mt-4">
+            <div className="flex items-center lg:hidden gap-x-5 top-4 absolute ">
+                <svg onClick={() => {navigate('/transfer')}} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 text-gray-500">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 12h-15m0 0l6.75 6.75M4.5 12l6.75-6.75" />
+                </svg>
+                <h1 className="text-xl font-medium lg:hidden">Confirmation</h1>
+            </div>
             <h1 className="font-bold">Transfer To</h1>
             {user.map((v) => {
                 return <Contact image={v.photo_profile} first_name={v.first_name} last_name={v.last_name} phone={v.phone_number} disabled/>
@@ -169,7 +175,7 @@ function Confirmation () {
 
       </div>
       </main>
-      <div className="hidden lg:block"><Footer /></div>
+      <Footer />
       </>
     )
 }

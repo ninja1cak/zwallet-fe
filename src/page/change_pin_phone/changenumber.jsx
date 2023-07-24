@@ -62,11 +62,11 @@ function ChangeNumber() {
             <Header />
             <div className="flex gap-4 w-[100%] mx-auto max-w-7xl ">
                 <NavbarSide />
-                <div className="w-full md:w-full bg-white md:rounded-3xl my-4 md:h-[700px]">
-                    <div className="flex flex-col py-12 md:py-10 px-8 md:h-[700px] justify-between">
+                <div className="w-full md:w-full bg-gray-100 md:bg-white md:rounded-3xl my-4 h-[800px] md:h-[700px]">
+                    <div className="flex flex-col py-12 md:py-10 px-8 md:h-[700px] justify-between h-[800px]">
                         <div>
                         <div className="flex items-center md:hidden gap-x-5 top-4 absolute ">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 text-gray-500">
+                            <svg onClick={() => {navigate('/personal_info')}} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 text-gray-500">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 12h-15m0 0l6.75 6.75M4.5 12l6.75-6.75" />
                             </svg>
                             <h1 className="text-xl font-medium">Add Phone Number</h1>
@@ -90,7 +90,7 @@ function ChangeNumber() {
                                     <input 
                                     type='number'
                                     name='phone_number'
-                                    className='w-full rounded-md p-2 items-center'
+                                    className='w-full bg-gray-100 md:bg-white rounded-md p-2 items-center'
                                     placeholder={user.phone_number}
                                     onChange={inputChange}/>
                                 </div>
@@ -104,7 +104,7 @@ function ChangeNumber() {
                     </div>
                 </div>
             </div>
-            <div className="hidden md:block"><Footer /></div>
+            <Footer />
         </div>
     </div>
   )

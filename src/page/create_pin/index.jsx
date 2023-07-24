@@ -69,7 +69,7 @@ const CreatePin = () => {
           
             <Sidebar/>
     
-            <div className='absolute md:top-3 md:right-0 md:-me-0 md:p-5 md:inline-block  md:w-2/5 mx-10'>
+            <div className='md:absolute w-[90%] mx-auto md:top-3 md:right-0 md:-me-0 md:p-5 md:inline-block  md:w-2/5 md:mx-10'>
                 <div className='text-semibold md:text-xl mb-2 xs:hidden md:block'>
                     <p>Secure Your Account, Your Wallet,
                     and Your Data With 6 Digits PIN
@@ -81,6 +81,11 @@ const CreatePin = () => {
                     Keep it secret and don’t tell anyone about your 
                     Zwallet account password and the PIN.</p>
                 </div>
+                <div className=' font-semibold text-3xl xs:flex xs:justify-center xs:items-center  pt-10 mt-10 rounded-lg text-primary md:hidden sm:mx-5 md:mx-0'>
+                    <h1>Zwallet</h1>            
+                </div>
+                <h2 className='font-bold text-2xl text-center md:hidden mt-32 mb-4'>Create Security PIN</h2>
+                <p className=' text-center text-gray-400 mb-10 md:hidden'>Create a PIN that's contain 6 digits number for <br /> security purpose in Zwallet</p>
     
                 <div className='w-full flex flex-row justify-center mb-10'>
                             <OtpInput
@@ -95,10 +100,10 @@ const CreatePin = () => {
 
                 </div>
     
-                    <button className=' btn  w-full ' onClick={inputPin} disabled={btnState}>
-                        Confirm
-                    </button>
-    
+                <button className=' btn  w-full mt-40 ' onClick={inputPin} disabled={btnState}>
+                    Confirm
+                </button>
+
             </div>
     
     
