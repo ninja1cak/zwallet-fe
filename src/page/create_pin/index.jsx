@@ -45,7 +45,7 @@ const CreatePin = () => {
     
     const updateStatus = async() =>{
         try {
-            const {data} = await axios(`https://zwallet-be.vercel.app/${code}`)
+            const {data} = await axios(`https://zwallet-be.vercel.app/auth/${code}`)
             if(data.status != 200){
                 navigate('/')
             }
