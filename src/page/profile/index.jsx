@@ -10,7 +10,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { Show } from "../../helpers/toast";
 import { logout } from "../../store/reducer/user";
 import { useNavigate } from "react-router-dom";
-import { useApiMulti } from "../../helpers/useApi";
+import { useApiMulti} from "../../helpers/useApi";
+import useApi from "../../helpers/useApi";
+
 
 
 function Profile() {
@@ -20,6 +22,7 @@ function Profile() {
     const dispatch = useDispatch()
     const formData = new FormData()
     const api = useApiMulti()
+    const apiDel = useApi()
     const navigate = useNavigate()
 
     const inputRef = useRef(null)
@@ -44,6 +47,16 @@ function Profile() {
         })
         if(data.status == 200){
             navigate('/home')
+        }
+    }
+
+    const handleClickDelete = async () =>{
+        try {
+            const {data} = await apiDel.delete('/user')
+            dispatch(logout())
+            navigate('/')
+        } catch (error) {
+            
         }
     }
     useEffect(() =>{
@@ -118,6 +131,12 @@ function Profile() {
                                 }}>
                                     <span>Logout</span>
                                     <div></div>
+                                </button>
+                                <button onClick={handleClickDelete} className="btn btn-active bg-red-500 text-white text-xl w-full md:w-3/5 h-20 capitalize flex justify-between px-6 mb-6">
+                                        <div className="flex justify-between items-center">
+                                            <span className=" text-white">DELETE ACCOUNT</span>
+                                            <FontAwesomeIcon icon={faArrowRight} className="text-gray-500" />
+                                        </div>
                                 </button>
                             </div>
                         </div>
