@@ -24,7 +24,7 @@ const Signup = () => {
     const Register = async() =>{
         await axios({
             method: 'POST',
-            url: "http://localhost:8888/user/",
+            url: "https://zwallet-be.vercel.app/user/",
             data: form
         })
         .then(({data}) => {

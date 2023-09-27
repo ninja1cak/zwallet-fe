@@ -23,7 +23,7 @@ const CreatePin = () => {
     const inputPin = async () =>{
             await axios({
                 method: "PUT",
-                url: `http://localhost:8888/user?email=${email}`,
+                url: `https://zwallet-be.vercel.app/user?email=${email}`,
                 data: {
                     pin: otp
                 }
@@ -45,7 +45,7 @@ const CreatePin = () => {
     
     const updateStatus = async() =>{
         try {
-            const {data} = await axios(`http://localhost:8888/auth/${code}`)
+            const {data} = await axios(`https://zwallet-be.vercel.app/auth/${code}`)
             if(data.status != 200){
                 navigate('/')
             }

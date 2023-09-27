@@ -15,7 +15,7 @@ function Forgot() {
     const navigate = useNavigate()
     const handleClick =  async () =>{
         try {
-            const {data} = await axios.get(`http://localhost:8888/auth/forget_password?email=${email}`)
+            const {data} = await axios.get(`https://zwallet-be.vercel.app/auth/forget_password?email=${email}`)
             setStatus(data.status)
             window.my_modal_1.showModal()
         } catch (error) {
