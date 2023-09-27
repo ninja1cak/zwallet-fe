@@ -27,7 +27,8 @@ function Home() {
 
     const getTransactionLog = async () =>{
         try {
-            
+            setLoading(true)
+
             const {data} = await api(`/transaction`)
             let dataTransaction 
             dataTransaction = data.data.map((e) =>{
@@ -56,6 +57,8 @@ function Home() {
             console.log(dataTransaction)
             dispatch(addTransactionLog(filter))
             setTransactionLog(dataTransaction)
+            setLoading(false)
+
         } catch (error) {
             console.log(error.message)
         }
@@ -73,10 +76,8 @@ function Home() {
         }
     }
     useEffect(() =>{
-        setLoading(true)
         getDataUser()
         getTransactionLog()
-        setLoading(false)
 
     },[])
 
