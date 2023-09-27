@@ -81,7 +81,10 @@ function Home() {
     },[])
 
 
-    
+    useEffect(() =>{
+        console.log(transactionLog)
+
+    },[transactionLog])
 
     return (
         <>
@@ -188,7 +191,7 @@ function Home() {
                             </div>
                             {
                                                        
-                                loading || transactionLog === undefined ?
+                                loading || transactionLog === "" ?
                                 <Loading /> :                  
                                 transactionLog ? transactionLog.map((e, index) => {
                                     return <Card key={index} name={e.first_name + ' ' + e.last_name} amount={e.amount} mb={'0.5rem'} />
