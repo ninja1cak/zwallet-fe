@@ -139,7 +139,7 @@ function Home() {
                                     <FontAwesomeIcon icon={faArrowDown} style={{color: 'green'}} className="w-6 h-6"  />
                                     <p className=" font-medium text-gray-500">Income</p>
                                     {
-                                        loading ?
+                                        loading || user.income === undefined ?
                                         <Loading /> :
                                         <p className=" font-bold text-lg">{convertRupiah.convert(user.income)}</p>
                                     }
@@ -149,9 +149,9 @@ function Home() {
                                     <FontAwesomeIcon icon={faArrowUp} style={{color: 'red'}} className="w-6 h-6" />
                                     <p className=" font-medium text-gray-500">Expense</p>
                                     {
-                                        loading ?
+                                        loading || user.expense === undefined ?
                                         <Loading /> :
-                                        <p className=" font-bold text-lg">{convertRupiah.convert(user.income)}</p>
+                                        <p className=" font-bold text-lg">{convertRupiah.convert(user.expense)}</p>
                                     }
                                 </div>
                             </div>
@@ -164,7 +164,7 @@ function Home() {
                                     <FontAwesomeIcon icon={faArrowDown} style={{color: 'green'}} className="w-6 h-6"  />
                                     <p className=" font-medium text-gray-500">Income</p>
                                     {
-                                        loading ?
+                                        loading || user.income === undefined  ?
                                         <Loading /> :
                                         <p className=" font-bold text-lg">{convertRupiah.convert(user.income)}</p>
                                     }
@@ -173,9 +173,9 @@ function Home() {
                                     <FontAwesomeIcon icon={faArrowUp} style={{color: 'red'}} className="w-6 h-6" />
                                     <p className=" font-medium text-gray-500">Expense</p>
                                     {
-                                        loading ?
+                                        loading || user.expense === undefined ?
                                         <Loading /> :
-                                        <p className=" font-bold text-lg">{convertRupiah.convert(user.income)}</p>
+                                        <p className=" font-bold text-lg">{convertRupiah.convert(user.expense)}</p>
                                     }
                                 </div>
                             </div>
@@ -188,7 +188,7 @@ function Home() {
                             </div>
                             {
                                                        
-                                loading ?
+                                loading || transactionLog === undefined ?
                                 <Loading /> :                  
                                 transactionLog ? transactionLog.map((e, index) => {
                                     return <Card key={index} name={e.first_name + ' ' + e.last_name} amount={e.amount} mb={'0.5rem'} />
