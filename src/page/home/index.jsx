@@ -76,7 +76,7 @@ function Home() {
         setLoading(true)
         getDataUser()
         getTransactionLog()
-        setLoading(false)
+        setLoading(true)
 
     },[])
 
