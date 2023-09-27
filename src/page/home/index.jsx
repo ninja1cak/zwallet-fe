@@ -21,7 +21,7 @@ function Home() {
     const navigate = useNavigate()  
     const [transactionLog, setTransactionLog] = useState([])
     const [user, setUser] = useState([])
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(true)
     const dispatch = useDispatch()
     const api = useApi()
 
