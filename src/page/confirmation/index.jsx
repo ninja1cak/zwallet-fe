@@ -10,6 +10,7 @@ import OtpInput from 'react-otp-input';
 import { useSelector } from 'react-redux/es/hooks/useSelector'
 import convertRupiah from 'rupiah-format'
 import { Show } from "../../helpers/toast";
+import withAuth from "../../helpers/withAuth";
 
 
 function Confirmation () {
@@ -75,11 +76,7 @@ function Confirmation () {
         setDateJSON(date.toLocaleDateString(undefined, options) + ' ' + date.toLocaleTimeString('it-IT'))
     },[])
     
-    useEffect(()=> {
-      if (!isAuth) {
-          navigate ('/')
-        }
-  },[isAuth])
+
     return (
       <>
       <div className="hidden lg:block"><Header /></div>
@@ -180,4 +177,4 @@ function Confirmation () {
     )
 }
 
-export default Confirmation
+export default withAuth(Confirmation) 

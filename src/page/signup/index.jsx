@@ -3,8 +3,8 @@ import Sidebar from '../../component/sidebar'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { useSelector } from 'react-redux'
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEnvelope, faLock, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
+import withAuth from '../../helpers/withAuth'
+
 
 const Signup = () => {
 

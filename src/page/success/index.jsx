@@ -14,6 +14,7 @@ import share from '../../assets/share-2.png'
 import download from '../../assets/download.png'
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import withAuth from "../../helpers/withAuth";
 
 
 function Success () {
@@ -73,9 +74,9 @@ function Success () {
         navigate('/success')
     },[dataTransfer])
     useEffect(() => {
-        if (!isAuth) {
-            navigate ('/')
-          }
+        // if (!isAuth) {
+        //     navigate ('/')
+        //   }
           getTransaction()
 
     },[isAuth])
@@ -138,4 +139,4 @@ function Success () {
     )
 }
 
-export default Success
+export default withAuth(Success) 

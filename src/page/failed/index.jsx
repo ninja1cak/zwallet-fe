@@ -10,6 +10,7 @@ import convertRupiah from 'rupiah-format'
 import { useDispatch } from "react-redux";
 import { addData } from "../../store/reducer/user";
 import { useSelector } from 'react-redux/es/hooks/useSelector'
+import withAuth from "../../helpers/withAuth";
 
 
 function Failed () {
@@ -77,4 +78,4 @@ function Failed () {
     )
 }
 
-export default Failed
+export default withAuth(Failed)

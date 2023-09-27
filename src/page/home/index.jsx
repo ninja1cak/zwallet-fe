@@ -13,16 +13,21 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBell, faArrowDown, faArrowUp } from '@fortawesome/free-solid-svg-icons'
 import Default_photo from '../../assets/default_photo.png'
 import dummyGraph from '../../assets/graphic.png'
+import withAuth from "../../helpers/withAuth";
+import Loading from "../../component/loading";
+
 function Home() {
-    const {data, isAuth} = useSelector((s) => s.users)
+    const {data} = useSelector((s) => s.users)
     const navigate = useNavigate()  
-    const options = { year: 'numeric', month: 'long', day: 'numeric' };
     const [transactionLog, setTransactionLog] = useState([])
     const [user, setUser] = useState([])
+    const [loading, setLoading] = useState(false)
     const dispatch = useDispatch()
     const api = useApi()
+
     const getTransactionLog = async () =>{
         try {
+            
             const {data} = await api(`/transaction`)
             let dataTransaction 
             dataTransaction = data.data.map((e) =>{
@@ -68,16 +73,13 @@ function Home() {
         }
     }
     useEffect(() =>{
+        setLoading(true)
         getDataUser()
+        getTransactionLog()
+        setLoading(false)
 
-        if(!isAuth){
-            navigate('/')
-        }
     },[])
 
-    useEffect(() =>{
-        getTransactionLog()
-    },[user])
 
     
 
@@ -113,8 +115,18 @@ function Home() {
                     <section id='balance' className=" bg-primary w-[100%] rounded-xl p-4 flex justify-between ">
                         <div>
                             <p className="text-white font-light tracking-wider">Balance</p>
-                            <p className="text-white text-4xl my-4">{convertRupiah.convert(user.balance)}</p>
-                            <p className="text-white tracking-wider">{user.phone_number ? user.phone_number : "set your phone number"}</p>
+                            {
+                                loading ? 
+                                <div className=" mt-4">
+                                    <Loading color='white'/> 
+                                </div>
+                                :
+                                <>
+                                    <p className="text-white text-4xl my-4">{convertRupiah.convert(user.balance)}</p>
+                                    <p className="text-white tracking-wider">{user.phone_number ? user.phone_number : "set your phone number"}</p>
+                                </>
+                            }
+
                         </div>
                         <div>
                             <button className=" block btn w-32 mb-4 bg-indigo-400 text-white" onClick={() => navigate('/transfer')}>Transfer</button>
@@ -126,12 +138,21 @@ function Home() {
                                 <div>
                                     <FontAwesomeIcon icon={faArrowDown} style={{color: 'green'}} className="w-6 h-6"  />
                                     <p className=" font-medium text-gray-500">Income</p>
-                                    <p className=" font-bold text-lg">{convertRupiah.convert(user.income)}</p>
+                                    {
+                                        loading ?
+                                        <Loading /> :
+                                        <p className=" font-bold text-lg">{convertRupiah.convert(user.income)}</p>
+                                    }
+
                                 </div>
                                 <div>
                                     <FontAwesomeIcon icon={faArrowUp} style={{color: 'red'}} className="w-6 h-6" />
                                     <p className=" font-medium text-gray-500">Expense</p>
-                                    <p className=" font-bold text-lg">{convertRupiah.convert(user.expense)}</p>
+                                    {
+                                        loading ?
+                                        <Loading /> :
+                                        <p className=" font-bold text-lg">{convertRupiah.convert(user.income)}</p>
+                                    }
                                 </div>
                             </div>
                             <img src={dummyGraph} alt="" />
@@ -142,12 +163,20 @@ function Home() {
                                 <div>
                                     <FontAwesomeIcon icon={faArrowDown} style={{color: 'green'}} className="w-6 h-6"  />
                                     <p className=" font-medium text-gray-500">Income</p>
-                                    <p className=" font-bold text-lg">{convertRupiah.convert(user.income)}</p>
+                                    {
+                                        loading ?
+                                        <Loading /> :
+                                        <p className=" font-bold text-lg">{convertRupiah.convert(user.income)}</p>
+                                    }
                                 </div>
                                 <div>
                                     <FontAwesomeIcon icon={faArrowUp} style={{color: 'red'}} className="w-6 h-6" />
                                     <p className=" font-medium text-gray-500">Expense</p>
-                                    <p className=" font-bold text-lg">{convertRupiah.convert(user.expense)}</p>
+                                    {
+                                        loading ?
+                                        <Loading /> :
+                                        <p className=" font-bold text-lg">{convertRupiah.convert(user.income)}</p>
+                                    }
                                 </div>
                             </div>
                             <img src={dummyGraph} alt="" />
@@ -158,8 +187,11 @@ function Home() {
                                 <Link to='/history' className=" text-primary">See all</Link>
                             </div>
                             {
-                                transactionLog ? transactionLog.map((e) => {
-                                    return <Card name={e.first_name + ' ' + e.last_name} amount={e.amount} mb={'0.5rem'} />
+                                                       
+                                loading ?
+                                <Loading /> :                  
+                                transactionLog ? transactionLog.map((e, index) => {
+                                    return <Card key={index} name={e.first_name + ' ' + e.last_name} amount={e.amount} mb={'0.5rem'} />
                                 }) : ''
                             }
                         </section>
@@ -174,4 +206,4 @@ function Home() {
     )
 }
 
-export default Home
+export default withAuth(Home) 

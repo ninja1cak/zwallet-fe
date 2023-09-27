@@ -5,6 +5,7 @@ import Footer from '../../component/footer'
 import { useNavigate } from 'react-router-dom'
 import useApi from '../../helpers/useApi'
 import { useSelector } from 'react-redux'
+import withAuth from '../../helpers/withAuth'
 
 function ChangeNumber() {
     const[user, setUser] = useState([]) 
@@ -44,11 +45,7 @@ function ChangeNumber() {
     }
     
     useEffect(() =>{
-        if(!isAuth){
-          navigate('/')
-        }else{
-            getUser()
-        }
+        getUser()
   }, [])
 
     useEffect(()=>{
@@ -97,7 +94,7 @@ function ChangeNumber() {
                                     type='number'
                                     name='phone_number'
                                     className='w-full bg-gray-100 md:bg-white rounded-md p-2 items-center'
-                                    placeholder={user.phone_number}
+                                    placeholder={user.phone_number ? user.phone_number.replace("+62", "") : ""}
                                     onChange={inputChange}/>
                                 </div>
                                 <hr className='w-full bg-gray-500 h-0.5'/>
@@ -116,4 +113,4 @@ function ChangeNumber() {
   )
 }
 
-export default ChangeNumber
+export default withAuth(ChangeNumber) 

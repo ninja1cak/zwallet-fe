@@ -12,11 +12,14 @@ import { useNavigate } from 'react-router'
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import { DateRange } from 'react-date-range';
+import withAuth from '../../helpers/withAuth'
+import Loading from '../../component/loading'
 
 function TransactionHistory() {
     const api = useApi()
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
     const dataUser = useSelector((s) => s.users)
+    const [loading, setLoading] = useState(true)
     const [history, setHistory] = useState([])
     const [allHistory, setAllHistory] = useState([])
 
@@ -39,6 +42,7 @@ function TransactionHistory() {
 
     const getAllHistory = async () =>{
         try {
+            setLoading(true)
             const {data, meta} = await api(`/transaction?page=${page}&limit=999999`)
  
             let datas = data.data.map((e) =>{
@@ -65,6 +69,7 @@ function TransactionHistory() {
             setAllHistory(datas)
             setHistory(datas)
             setMeta(data.meta)
+            setLoading(false)
 
         } catch (error) {
             
@@ -132,9 +137,12 @@ function TransactionHistory() {
                 <p className='ml-10 mt-8 font-semibold text-xl hidden md:block'>Transaction History</p>
                 <div className='md:px-10 mt-10 h-[610px] md:h-[610px]'>
                     {
+                        loading === true ? 
+                        <Loading />
+                        : 
                         history.length != 0 ? 
-                        history.slice(page == 1 ? 0: (4*(page-1)), page*4).map((e, index =4) => {
-                            return <Card name = {e.first_name + ' ' + e.last_name} amount={e.amount} date={e.transfer_date_string} mb={'2rem'} />
+                        history.slice(page == 1 ? 0: (4*(page-1)), page*4).map((e, index) => {
+                            return <Card key={index} name = {e.first_name + ' ' + e.last_name} amount={e.amount} date={e.transfer_date_string} mb={'2rem'} />
                         }) : <p className='bg-white h-full'>Data Not Found</p>
                     }
                 </div>
@@ -214,4 +222,4 @@ function TransactionHistory() {
     </>  )
 }
 
-export default TransactionHistory
+export default withAuth(TransactionHistory)

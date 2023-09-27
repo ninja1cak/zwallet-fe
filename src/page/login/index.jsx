@@ -7,7 +7,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import useApi from "../../helpers/useApi";
 import { login } from "../../store/reducer/user";
-
+import withAuth from "../../helpers/withAuth";
 
 function Login() {
     const {isAuth} = useSelector((s) => s.users)

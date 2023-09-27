@@ -11,6 +11,7 @@ import { Show } from "../../helpers/toast";
 import { logout } from "../../store/reducer/user";
 import { useNavigate } from "react-router-dom";
 import { useApiMulti } from "../../helpers/useApi";
+import withAuth from "../../helpers/withAuth";
 
 
 function Profile() {
@@ -47,9 +48,9 @@ function Profile() {
         }
     }
     useEffect(() =>{
-        if(!isAuth){
-            navigate('/')
-          }
+        // if(!isAuth){
+        //     navigate('/')
+        //   }
     },[])
     useEffect(() =>{
         console.log(state)
@@ -129,4 +130,4 @@ function Profile() {
     )
 }
 
-export default Profile
+export default withAuth(Profile) 

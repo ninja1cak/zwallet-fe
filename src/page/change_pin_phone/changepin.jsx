@@ -6,6 +6,7 @@ import useApi from '../../helpers/useApi'
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import OtpInput from 'react-otp-input';
+import withAuth from '../../helpers/withAuth'
 
 function ChangePin ()  {
 
@@ -56,11 +57,7 @@ function ChangePin ()  {
         }
     }, [otp])
 
-    useEffect(() =>{
-        if(!isAuth){
-          navigate('/')
-        }
-  }, [])
+
 
   return (
     <div>
@@ -185,4 +182,4 @@ function ChangePin ()  {
   )
 }
 
-export default ChangePin
+export default withAuth(ChangePin) 

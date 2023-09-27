@@ -8,17 +8,18 @@ import NavbarSide from "../../component/navbarside";
 import { Link, useNavigate } from "react-router-dom";
 import useApi from "../../helpers/useApi";
 import { useSelector } from "react-redux";
+import withAuth from "../../helpers/withAuth";
 
 
 function PersonalInfo() {
     const { data, isAuth } = useSelector((s)=>s.users)
     const navigate = useNavigate()
     console.log(data)
-    useEffect(() =>{
-        if(!isAuth){
-            navigate('/')
-          }
-    },[])
+    // useEffect(() =>{
+    //     if(!isAuth){
+    //         navigate('/')
+    //       }
+    // },[])
 
     return (
         <>
@@ -66,4 +67,4 @@ function PersonalInfo() {
     )
 }
 
-export default PersonalInfo
+export default withAuth( PersonalInfo)

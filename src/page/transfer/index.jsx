@@ -8,6 +8,7 @@ import NavbarSide from "../../component/navbarside";
 import { useSelector} from 'react-redux'
 import { useNavigate } from "react-router-dom";
 import Default_photo from '../../assets/default_photo.png'
+import withAuth from "../../helpers/withAuth";
 function Transfer () {
     const api = useApi()
     const [user,setUser] = useState([])
@@ -39,9 +40,9 @@ function Transfer () {
       }
 
     useEffect(()=> {
-        if (!isAuth) {
-            navigate ('/')
-          }
+        // if (!isAuth) {
+        //     navigate ('/')
+        //   }
         getUser()
     },[currentPage,searchQuery,isAuth])
     return(
@@ -99,4 +100,4 @@ function Transfer () {
     )
 }
 
-export default Transfer
+export default withAuth(Transfer) 

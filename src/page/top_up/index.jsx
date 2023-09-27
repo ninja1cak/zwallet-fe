@@ -2,6 +2,7 @@ import React from "react";
 import Header from "../../component/header";
 import Footer from "../../component/footer";
 import NavbarSide from "../../component/navbarside";
+import withAuth from "../../helpers/withAuth";
 
 function Topup() {
     return (
@@ -57,4 +58,4 @@ function Topup() {
     )
 }
 
-export default Topup
+export default withAuth(Topup) 

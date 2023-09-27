@@ -16,9 +16,7 @@ function Home() {
     const {isAuth} = useSelector((s) => s.users)
     const navigate = useNavigate()
     useEffect(() =>{
-        if(isAuth)(
-            navigate('/home')
-        )
+        if(isAuth) navigate('/home')
     },[])
     return (
         <>

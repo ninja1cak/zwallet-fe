@@ -11,6 +11,7 @@ import convertRupiah from 'rupiah-format'
 import { useDispatch } from "react-redux";
 import { confirmation } from "../../store/reducer/user";
 import { Show } from "../../helpers/toast";
+import withAuth from "../../helpers/withAuth";
 
 function TransferDetail (id) {
     const params = useParams()
@@ -52,11 +53,11 @@ function TransferDetail (id) {
     useEffect(()=> {
         getUserTransfer()
     },[])
-    useEffect(()=> {
-        if (!isAuth) {
-            navigate ('/')
-          }
-    },[isAuth,inputChange])
+    // useEffect(()=> {
+    //     if (!isAuth) {
+    //         navigate ('/')
+    //       }
+    // },[isAuth,inputChange])
     return (
         <>
         <div className="hidden lg:block"><Header /></div>
@@ -97,4 +98,4 @@ function TransferDetail (id) {
     )
 }
 
-export default TransferDetail
+export default withAuth(TransferDetail)
