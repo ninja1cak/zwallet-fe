@@ -19,7 +19,7 @@ function Transfer () {
     const [searchQuery, setSearchQuery] = useState([])
     const navigate = useNavigate()
     const {isAuth} = useSelector ((s) => s.users)
-    const {loading, setLoading} = useState(true) 
+    const [loading, setLoading] = useState(false)
 
     const handleSearchChange = (event) => {
         setSearchQuery(event.target.value);
@@ -71,8 +71,8 @@ function Transfer () {
                 </div>
                 <div className="flex flex-col gap-y-5 mt-10 h-[500px]">
                 { loading ? <Loading /> : user ? ( 
-                    user.map((v, index)=>{
-                        return <Contact key={index} image={v.photo_profile || Default_photo} first_name={v.first_name} last_name={v.last_name} phone={v.phone_number} id={v.user_id}  />
+                    user.map((v)=>{
+                        return <Contact image={v.photo_profile || Default_photo} first_name={v.first_name} last_name={v.last_name} phone={v.phone_number} id={v.user_id}  />
                     })):(<h1>data not found</h1>)
                 }
                 </div>
