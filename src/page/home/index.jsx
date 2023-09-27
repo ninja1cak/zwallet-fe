@@ -76,7 +76,7 @@ function Home() {
         setLoading(true)
         getDataUser()
         getTransactionLog()
-        setLoading(true)
+        setLoading(false)
 
     },[])
 
@@ -116,7 +116,7 @@ function Home() {
                         <div>
                             <p className="text-white font-light tracking-wider">Balance</p>
                             {
-                                loading ? 
+                                loading || user.balance === undefined ? 
                                 <div className=" mt-4">
                                     <Loading color='white'/> 
                                 </div>
