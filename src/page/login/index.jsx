@@ -67,7 +67,7 @@ function Login() {
                 <div className="block md:hidden text-center pt-20 mb-28">
                     <h1 className="text-3xl font-medium text-primary">Zwallet</h1>
                 </div>
-                <div className="bg-white  rounded-t-3xl md:rounded-none px-8 md:mx-4 md:px-0 lg:py-2 md:py-16 ">
+                <div className="bg-white rounded-t-3xl md:rounded-none px-8 md:mx-4 md:px-0 lg:py-2 md:py-16 ">
                     <span className="hidden md:block md:text-lg lg:text-3xl font-medium lg:leading-relaxed  mb-12">Start Accessing Banking Needs With All Devices and All Platforms With 30.000+ Users</span>
                     <span className="hidden md:block md:text-sm lg:text-lg text-gray-400 md:leading-relaxed lg:leading-loose">Transfering money is eassier than ever, you can access Zwallet wherever you are. Desktop, laptop, mobile phone? we cover all of that for you!</span>
                     <div className="block md:hidden text-center py-10 px-4">
