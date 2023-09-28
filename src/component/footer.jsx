@@ -4,7 +4,7 @@ import React from "react";
 function Footer() {
     return (
         <>
-            <div className="bg-primary h-24 px-5 py-8">
+            <footer className="bg-primary h-24 px-5 py-8">
                 <div className="flex justify-between items-center w-[100%] max-w-7xl mx-auto">
                     <span className="text-md  w-[200px] md:w-[300px] md:text-xl text-white">2020 Zwallet. All right reserved.</span>
                     <div className=" flex flex-col md:block md:">
@@ -12,7 +12,7 @@ function Footer() {
                         <span className="text-white">contact@zwallet.com</span>
                     </div>
                 </div>
-            </div>
+            </footer>
         </>
     )
 }

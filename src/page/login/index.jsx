@@ -17,6 +17,7 @@ function Login() {
     const navigate = useNavigate()
     const [btnState, setBtnState] = useState(true)
     const [status, setStatus] = useState(0)
+    const [loading, setLoading] = useState(false)
 
     const inputChange = (e) =>{
         const data = {...form}
@@ -26,22 +27,21 @@ function Login() {
 
     const goLogin = async () =>{
         try {
-            console.log(form)
+            setLoading(true)
             const {data} = await api({
                 method: 'POST',
                 data: form,
                 url:'/auth/'
             })
             setStatus(data.status)
+            setLoading(false)
             if(data.status == 201){
                 const token = data.token
                 dispatch(login(token))
                 navigate('/home')
 
             }
-            console.log(data)
         } catch (error) {
-            console.log(error)
             return error
         }
     }
@@ -105,7 +105,16 @@ function Login() {
                         <Link to="/forgot" className="text-lg">Forgot password?</Link>
                     </div>
                     <div className="mb-4">
-                        <button className="btn bg-primary text-white w-full h-16 rounded-2xl text-lg capitalize" onClick={goLogin} disabled={btnState}>Login</button>
+                        <button className="btn bg-primary text-white w-full h-16 rounded-2xl text-lg capitalize" onClick={goLogin} disabled={btnState}>
+                            {
+                             loading ? 
+                             <div className=" flex gap-4">
+                                <span class="loading loading-spinner text-white"></span> 
+                                <p>Please Wait</p>
+                             </div>   : "Login"
+                            }
+
+                        </button>
                     </div>
                     <div className="text-center">
                         <span>Don't have an account?</span>

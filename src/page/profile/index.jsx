@@ -70,7 +70,7 @@ function Profile() {
 
     return (
         <>
-            <div className="md: bg-gray-100">
+            <div className="md:bg-gray-100">
                 <Header />
                 <div className="flex gap-8 w-[100%] mx-auto max-w-7xl ">
                 <NavbarSide />
